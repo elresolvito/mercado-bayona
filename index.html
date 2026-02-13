@@ -44,13 +44,12 @@
             --text-light: #64748b;
             --border-light: #f0f0f0;
             --border-medium: #e2e8f0;
-            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.03);
             --shadow-md: 0 8px 20px rgba(0,0,0,0.08);
             --shadow-lg: 0 12px 24px rgba(13,59,51,0.08);
             --radius-sm: 12px;
             --radius-md: 16px;
             --radius-lg: 20px;
-            --radius-xl: 24px;
         }
         
         * {
@@ -72,14 +71,14 @@
         }
         
         /* ============================================
-           TARJETAS DE PRODUCTO - ESTILO MERCADO ÚNICO
+           TARJETAS DE PRODUCTO - ESTILO IMAGEN GRANDE
            ============================================ */
         
         /* Grid principal */
         .mercado-product-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1rem;
+            gap: 1.25rem;
             max-width: 1280px;
             margin: 0 auto;
             padding: 0.5rem;
@@ -89,7 +88,7 @@
         @media (min-width: 640px) {
             .mercado-product-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 1.25rem;
+                gap: 1.5rem;
                 padding: 1rem;
             }
         }
@@ -98,144 +97,20 @@
         @media (min-width: 1024px) {
             .mercado-product-grid {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 1.5rem;
+                gap: 1.75rem;
             }
         }
         
-        /* ========== TARJETA MÓVIL (HORIZONTAL) ========== */
-        .product-card-mobile {
-            display: flex;
-            background: var(--bg-white);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-light);
-            transition: all 0.25s ease;
-            height: 100%;
-            position: relative;
+        /* Desktop grande: 4 columnas */
+        @media (min-width: 1280px) {
+            .mercado-product-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 2rem;
+            }
         }
         
-        .product-card-mobile:active {
-            background-color: #fafafa;
-            transform: scale(0.98);
-        }
-        
-        .product-card-mobile-image {
-            width: 100px;
-            flex-shrink: 0;
-            background: #f8fafc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.75rem;
-        }
-        
-        .product-card-mobile-image img {
-            width: 100%;
-            height: auto;
-            max-height: 80px;
-            object-fit: contain;
-        }
-        
-        .product-card-mobile-content {
-            flex: 1;
-            padding: 0.75rem 0.75rem 0.75rem 0.5rem;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .product-card-mobile-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 0.25rem;
-        }
-        
-        .product-card-mobile-title {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            line-height: 1.3;
-            margin: 0;
-            padding-right: 0.5rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            flex: 1;
-        }
-        
-        .product-card-mobile-price {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--primary);
-            white-space: nowrap;
-        }
-        
-        .product-card-mobile-detail {
-            font-size: 0.7rem;
-            color: var(--text-light);
-            margin-bottom: 0.25rem;
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-        
-        .product-card-mobile-market {
-            font-size: 0.65rem;
-            color: var(--text-medium);
-            background: #f1f5f9;
-            display: inline-block;
-            padding: 0.2rem 0.5rem;
-            border-radius: 30px;
-            margin-bottom: 0.5rem;
-            width: fit-content;
-            font-weight: 500;
-            border: 1px solid var(--border-medium);
-        }
-        
-        /* Selector de cantidad - IGUAL AL DISEÑO */
-        .quantity-selector {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 0.5rem;
-            margin-top: auto;
-        }
-        
-        .quantity-btn {
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
-            background: #f1f5f9;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            cursor: pointer;
-            transition: all 0.15s;
-            border: 1px solid var(--border-medium);
-        }
-        
-        .quantity-btn:active {
-            background: #e2e8f0;
-            transform: scale(0.95);
-        }
-        
-        .quantity-value {
-            font-size: 0.875rem;
-            font-weight: 600;
-            min-width: 24px;
-            text-align: center;
-        }
-        
-        /* ========== TARJETA DESKTOP (VERTICAL) ========== */
-        .product-card-desktop {
-            display: flex;
-            flex-direction: column;
+        /* ========== TARJETA DE PRODUCTO ========== */
+        .product-card {
             background: var(--bg-white);
             border-radius: var(--radius-lg);
             overflow: hidden;
@@ -243,47 +118,52 @@
             border: 1px solid var(--border-light);
             transition: all 0.3s ease;
             height: 100%;
+            display: flex;
+            flex-direction: column;
             position: relative;
         }
         
-        .product-card-desktop:hover {
-            box-shadow: var(--shadow-lg);
+        .product-card:hover {
+            box-shadow: var(--shadow-md);
             transform: translateY(-4px);
             border-color: var(--border-medium);
         }
         
-        .product-card-desktop-image {
+        /* Contenedor de imagen - TAMAÑO GRANDE como protagonista */
+        .product-card-image {
             background: #ffffff;
-            padding: 1.5rem 1.5rem 0.5rem;
+            padding: 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-bottom: 1px solid #f8fafc;
             aspect-ratio: 1 / 1;
+            border-bottom: 1px solid #f8fafc;
         }
         
-        .product-card-desktop-image img {
+        .product-card-image img {
             width: 100%;
             height: 100%;
-            max-height: 160px;
+            max-height: 180px;
             object-fit: contain;
             transition: transform 0.3s ease;
         }
         
-        .product-card-desktop:hover .product-card-desktop-image img {
-            transform: scale(1.05);
+        .product-card:hover .product-card-image img {
+            transform: scale(1.08);
         }
         
-        .product-card-desktop-content {
+        /* Contenido de la tarjeta */
+        .product-card-content {
             padding: 1.25rem 1.25rem 1.5rem;
             display: flex;
             flex-direction: column;
             flex: 1;
         }
         
-        .product-card-desktop-market {
+        /* Badge de categoría/tienda */
+        .product-card-badge {
             font-size: 0.7rem;
-            color: var(--text-medium);
+            color: var(--text-light);
             background: #f8fafc;
             padding: 0.25rem 0.75rem;
             border-radius: 30px;
@@ -292,57 +172,71 @@
             margin-bottom: 0.75rem;
             border: 1px solid var(--border-medium);
             font-weight: 600;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
         }
         
-        .product-card-desktop-title {
-            font-size: 1.125rem;
-            font-weight: 700;
+        /* Nombre del producto - tamaño controlado */
+        .product-card-title {
+            font-size: 0.95rem;
+            font-weight: 600;
             color: var(--text-dark);
             margin-bottom: 0.5rem;
-            line-height: 1.3;
+            line-height: 1.4;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            min-height: 2.6rem;
         }
         
-        .product-card-desktop-detail {
-            font-size: 0.875rem;
+        /* Detalles específicos */
+        .product-card-detail {
+            font-size: 0.8rem;
             color: var(--text-light);
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
             gap: 0.375rem;
         }
         
-        .product-card-desktop-detail i {
-            color: var(--text-light);
-            font-size: 0.8rem;
+        .product-card-detail i {
+            color: #94a3b8;
+            font-size: 0.75rem;
         }
         
-        .product-card-desktop-price-row {
+        /* Footer con precio y botón */
+        .product-card-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-top: auto;
-            padding-top: 1rem;
+            padding-top: 0.75rem;
             border-top: 1px dashed var(--border-medium);
         }
         
-        .product-card-desktop-price {
-            font-size: 1.5rem;
+        .product-card-price {
+            font-size: 1.35rem;
             font-weight: 800;
             color: var(--primary);
             line-height: 1;
         }
         
-        .product-card-desktop-add-btn {
+        .product-card-price small {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--text-light);
+            margin-left: 0.25rem;
+        }
+        
+        /* Botón Añadir - exactamente como en la captura */
+        .product-card-add-btn {
             background: var(--primary);
             color: white;
             border: none;
             border-radius: 40px;
-            padding: 0.6rem 1.25rem;
-            font-size: 0.875rem;
+            padding: 0.5rem 1.25rem;
+            font-size: 0.85rem;
             font-weight: 600;
             display: flex;
             align-items: center;
@@ -350,46 +244,35 @@
             cursor: pointer;
             transition: all 0.2s;
             border: 1px solid transparent;
+            letter-spacing: 0.3px;
         }
         
-        .product-card-desktop-add-btn:hover {
+        .product-card-add-btn i {
+            font-size: 0.8rem;
+        }
+        
+        .product-card-add-btn:hover {
             background: var(--primary-dark);
             transform: scale(1.05);
         }
         
-        .product-card-desktop-add-btn i {
-            font-size: 0.875rem;
-        }
-        
-        /* Responsive: Mobile solo móvil, Desktop solo desktop */
+        /* Botón más grande en móvil para mejor tacto */
         @media (max-width: 639px) {
-            .product-card-desktop {
-                display: none;
+            .product-card-add-btn {
+                padding: 0.6rem 1.25rem;
+            }
+            
+            .product-card-price {
+                font-size: 1.25rem;
             }
         }
         
-        @media (min-width: 640px) {
-            .product-card-mobile {
-                display: none;
-            }
-        }
-        
-        /* Producto agotado */
-        .product-card.unavailable,
-        .product-card-mobile.unavailable,
-        .product-card-desktop.unavailable {
-            opacity: 0.7;
-            filter: grayscale(70%);
-            position: relative;
-        }
-        
-        .product-card-mobile.unavailable::after,
-        .product-card-desktop.unavailable::after {
-            content: "AGOTADO";
+        /* Badge "Nuevo" */
+        .product-card-badge-new {
             position: absolute;
             top: 10px;
-            right: 10px;
-            background: #ef4444;
+            left: 10px;
+            background: var(--accent);
             color: white;
             font-size: 0.65rem;
             font-weight: 700;
@@ -397,6 +280,44 @@
             border-radius: 30px;
             z-index: 10;
             letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        /* Producto agotado */
+        .product-card.unavailable {
+            opacity: 0.7;
+            filter: grayscale(70%);
+        }
+        
+        .product-card.unavailable::after {
+            content: "AGOTADO";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ef4444;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 30px;
+            z-index: 10;
+        }
+        
+        /* Animación de entrada */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .product-card {
+            animation: fadeInUp 0.5s ease forwards;
+            animation-delay: calc(var(--index, 0) * 0.05s);
         }
         
         /* ============================================
@@ -437,35 +358,6 @@
         .modal-overlay.show .modal-content {
             transform: translateY(0);
             opacity: 1;
-        }
-        
-        /* ============================================
-           ANIMACIONES
-           ============================================ */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .product-card-mobile,
-        .product-card-desktop {
-            animation: fadeInUp 0.5s ease forwards;
-        }
-        
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-        
-        .shake {
-            animation: shake 0.4s ease-in-out;
         }
         
         /* ============================================
@@ -552,6 +444,19 @@
             align-items: center;
             justify-content: center;
             border: 2px solid white;
+        }
+        
+        /* ============================================
+           ANIMACIONES
+           ============================================ */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        .shake {
+            animation: shake 0.4s ease-in-out;
         }
         
         /* ============================================
@@ -1098,7 +1003,7 @@
     }
     
     // ============================================
-    // RENDER DE PRODUCTOS - ESTILO MERCADO ÚNICO
+    // RENDER PRODUCTOS - ESTILO IMAGEN GRANDE
     // ============================================
     function renderProducts(productsToRender) {
         const productGrid = document.getElementById('mercadoProductGrid');
@@ -1114,105 +1019,84 @@
         
         if (noResultsMessage) noResultsMessage.classList.add('hidden');
         
+        // Asegurar que el grid tenga la clase correcta
         productGrid.className = 'mercado-product-grid';
-        const isMobile = window.innerWidth < 640;
         
         let html = '';
         
         productsToRender.forEach((product, index) => {
             const isUnavailable = product.stock === 0 || product.stock === "0" || product.activo === false;
             const disabledClass = isUnavailable ? 'unavailable' : '';
-            const marketName = 'Mercado Único';
             
-            // Obtener nombre, precio, etc.
+            // Obtener datos del producto (adaptado para español/inglés)
             const name = product.nombre || product.name || 'Producto';
             const price = product.precio || product.price || 0;
             const image = product.imagen || product.image || 'https://via.placeholder.com/200x200?text=No+Image';
+            const category = product.categoria || product.category || 'General';
+            const marca = product.marca || product.brand || '';
             const detail = product.detalle || product.specificDetails || product.weight ? `${product.weight}g` : '';
             const productId = product.id || index + 1;
             
+            // Formatear precio
             const formattedPrice = price.toLocaleString('es-CU', {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2
             });
             
-            // VERSIÓN MÓVIL
-            if (isMobile) {
-                html += `
-                <div class="product-card-mobile ${disabledClass}" data-product-id="${productId}">
-                    <div class="product-card-mobile-image">
-                        <img src="${image}" alt="${name}" loading="lazy" onerror="this.src='https://via.placeholder.com/80x80?text=No+Image'">
-                    </div>
-                    <div class="product-card-mobile-content">
-                        <div class="product-card-mobile-header">
-                            <h3 class="product-card-mobile-title">${name}</h3>
-                            <span class="product-card-mobile-price">$${formattedPrice}</span>
-                        </div>
-                        
-                        ${detail ? `
-                        <div class="product-card-mobile-detail">
-                            <i class="fas fa-box"></i> ${detail}
-                        </div>` : ''}
-                        
-                        <span class="product-card-mobile-market">
-                            <i class="fas fa-store"></i> ${marketName}
+            // Construir HTML de la tarjeta - UNA SOLA VERSIÓN PARA TODOS
+            html += `
+            <div class="product-card ${disabledClass}" data-product-id="${productId}" style="--index: ${index};">
+                <!-- Badge "Nuevo" para los primeros 3 productos (opcional) -->
+                ${index < 3 ? '<span class="product-card-badge-new">Nuevo</span>' : ''}
+                
+                <!-- IMAGEN GRANDE (protagonista) -->
+                <div class="product-card-image">
+                    <img src="${image}" 
+                         alt="${name}"
+                         loading="lazy"
+                         onerror="this.src='https://via.placeholder.com/200x200?text=No+Image'">
+                </div>
+                
+                <!-- CONTENIDO -->
+                <div class="product-card-content">
+                    <!-- Badge de categoría/tienda -->
+                    <span class="product-card-badge">
+                        <i class="fas fa-store mr-1"></i> ${category}
+                    </span>
+                    
+                    <!-- NOMBRE DEL PRODUCTO (tamaño reducido) -->
+                    <h3 class="product-card-title">${name}</h3>
+                    
+                    <!-- Detalle específico (peso, cantidad, etc) -->
+                    ${detail ? `
+                    <div class="product-card-detail">
+                        <i class="fas fa-box"></i> ${detail}
+                    </div>` : ''}
+                    
+                    <!-- Marca (si existe) -->
+                    ${marca && marca !== 'N/A' ? `
+                    <div class="product-card-detail">
+                        <i class="fas fa-tag"></i> ${marca}
+                    </div>` : ''}
+                    
+                    <!-- FOOTER con precio y botón -->
+                    <div class="product-card-footer">
+                        <span class="product-card-price">
+                            $${formattedPrice}
+                            ${price < 1000 ? '<small>CUP</small>' : ''}
                         </span>
                         
                         ${!isUnavailable ? `
-                        <div class="quantity-selector" onclick="event.stopPropagation()">
-                            <button class="quantity-btn" onclick="decreaseQuantity(${productId}, event)">−</button>
-                            <span class="quantity-value" id="qty-${productId}">1</span>
-                            <button class="quantity-btn" onclick="increaseQuantity(${productId}, event)">+</button>
-                            <span class="text-[var(--primary)] text-xs font-semibold ml-auto cursor-pointer" onclick="addToCart(${productId}, event)">
-                                <i class="fas fa-plus-circle"></i> Añadir
-                            </span>
-                        </div>
-                        ` : ''}
+                        <button class="product-card-add-btn" onclick="addToCart(${productId}, event, 1)">
+                            <i class="fas fa-plus-circle"></i> Añadir
+                        </button>
+                        ` : `
+                        <span class="text-red-500 text-xs font-bold">Agotado</span>
+                        `}
                     </div>
                 </div>
-                `;
-            } 
-            
-            // VERSIÓN DESKTOP
-            else {
-                html += `
-                <div class="product-card-desktop ${disabledClass}" data-product-id="${productId}">
-                    <div class="product-card-desktop-image">
-                        <img src="${image}" alt="${name}" loading="lazy" onerror="this.src='https://via.placeholder.com/200x200?text=No+Image'">
-                    </div>
-                    <div class="product-card-desktop-content">
-                        <span class="product-card-desktop-market">
-                            <i class="fas fa-store"></i> ${marketName}
-                        </span>
-                        
-                        <h3 class="product-card-desktop-title">${name}</h3>
-                        
-                        ${detail ? `
-                        <div class="product-card-desktop-detail">
-                            <i class="fas fa-box"></i> ${detail}
-                        </div>` : ''}
-                        
-                        ${product.descripcion || product.description ? `
-                        <p class="text-xs text-gray-500 mb-3 line-clamp-2">
-                            ${product.descripcion || product.description}
-                        </p>
-                        ` : ''}
-                        
-                        <div class="product-card-desktop-price-row">
-                            <span class="product-card-desktop-price">$${formattedPrice}</span>
-                            
-                            ${!isUnavailable ? `
-                            <button class="product-card-desktop-add-btn" onclick="addToCart(${productId}, event, 1)">
-                                <i class="fas fa-cart-plus"></i> Añadir
-                            </button>
-                            ` : `
-                            <span class="bg-red-500 text-white px-4 py-2 rounded-full text-xs font-bold">AGOTADO</span>
-                            `}
-                        </div>
-                    </div>
-                </div>
-                `;
-            }
+            </div>
+            `;
         });
         
         productGrid.innerHTML = html;
@@ -1222,7 +1106,7 @@
     // FUNCIONES DEL CARRITO
     // ============================================
     
-    window.addToCart = function(productId, event, quantity = null) {
+    window.addToCart = function(productId, event, quantity = 1) {
         if (event) event.stopPropagation();
         
         // Buscar producto
@@ -1252,19 +1136,12 @@
             return;
         }
         
-        // Obtener cantidad
-        let qty = quantity || 1;
-        const qtyEl = document.getElementById(`qty-${productId}`);
-        if (qtyEl && !quantity) {
-            qty = parseInt(qtyEl.textContent) || 1;
-        }
-        
         // Crear item
         const cartItem = {
             id: product.id || productId,
             name: product.nombre || product.name,
             price: product.precio || product.price,
-            quantity: qty,
+            quantity: quantity,
             image: product.imagen || product.image,
             detail: product.detalle || product.specificDetails || ''
         };
@@ -1272,7 +1149,7 @@
         // Agregar al carrito
         const existingIndex = cart.findIndex(item => item.id == cartItem.id);
         if (existingIndex !== -1) {
-            cart[existingIndex].quantity += qty;
+            cart[existingIndex].quantity += quantity;
         } else {
             cart.push(cartItem);
         }
@@ -1284,31 +1161,6 @@
         // Feedback visual
         showCartAnimation();
         showToast(`${cartItem.name} añadido al carrito`);
-        
-        // Resetear cantidad
-        if (qtyEl && !quantity) qtyEl.textContent = '1';
-    };
-    
-    window.increaseQuantity = function(productId, event) {
-        if (event) event.stopPropagation();
-        const qtyEl = document.getElementById(`qty-${productId}`);
-        if (qtyEl) {
-            let val = parseInt(qtyEl.textContent) || 1;
-            val++;
-            qtyEl.textContent = val;
-        }
-    };
-    
-    window.decreaseQuantity = function(productId, event) {
-        if (event) event.stopPropagation();
-        const qtyEl = document.getElementById(`qty-${productId}`);
-        if (qtyEl) {
-            let val = parseInt(qtyEl.textContent) || 1;
-            if (val > 1) {
-                val--;
-                qtyEl.textContent = val;
-            }
-        }
     };
     
     function updateCartUI() {
@@ -1522,7 +1374,7 @@ _¡Gracias por tu compra!_`.replace(/        /g, '');
         // Menú móvil
         if (mobileMenuBtn) {
             mobileMenuBtn.addEventListener('click', () => {
-                document.getElementById('mobile-menu').classList.remove('translate-x-[-100%]');
+                document.getElementById('mobile-menu').classList.remove('-translate-x-full');
                 document.getElementById('mobile-menu').classList.add('translate-x-0');
                 mobileBackdrop.classList.remove('hidden');
             });
@@ -1538,7 +1390,7 @@ _¡Gracias por tu compra!_`.replace(/        /g, '');
         
         function closeMobileMenu() {
             document.getElementById('mobile-menu').classList.remove('translate-x-0');
-            document.getElementById('mobile-menu').classList.add('translate-x-[-100%]');
+            document.getElementById('mobile-menu').classList.add('-translate-x-full');
             mobileBackdrop.classList.add('hidden');
         }
         
@@ -1613,12 +1465,15 @@ _¡Gracias por tu compra!_`.replace(/        /g, '');
             });
         });
         
-        // Resize para re-render
+        // Resize para re-render (opcional)
         let resizeTimeout;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
-                filterAndRenderProducts();
+                // Solo re-render si cambia el layout significativamente
+                if (window.innerWidth < 640 || window.innerWidth >= 640) {
+                    filterAndRenderProducts();
+                }
             }, 250);
         });
     }
