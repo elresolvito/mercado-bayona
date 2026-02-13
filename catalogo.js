@@ -1,119 +1,124 @@
-// catálogo.js - versión navegador (sin ES6 modules)
+// ============================================
+// CATÁLOGO DE PRODUCTOS - EL RESOLVITO
+// Versión: 3.0 (Estilo Mercado Único)
+// ============================================
 
-const catalogo = {
-  productos: [
-    // ========== SECCIÓN MERCADO ==========
-    // --- ALIMENTOS Y CONSERVAS ---
-    { id: 1, name: 'Atún en lata', price: 540, image: "https://i.postimg.cc/76xHK6zt/atun_precio_500.png", description: 'Atún fresco en conserva, ideal para ensaladas y pastas.', specificDetails: 'Lata estándar', category: 'Alimentos y conservas', department: 'mercado', status: 'available' },
-    { id: 2, name: 'Pasta de tomate', price: 380, image: "https://i.postimg.cc/gjjYPTNv/pasta_tomate_precio_350.png", description: 'Concentrado de tomate para salsas y guisos.', specificDetails: 'Paquete', category: 'Alimentos y conservas', department: 'mercado', status: 'available' },
-    { id: 3, name: 'Aceitunas Verdes en Rodajas con Pimiento', price: 810, image: "https://i.postimg.cc/4yyJTSBj/pimiento_presio_750.png", description: 'Aceitunas verdes en rodajas con pimiento.', specificDetails: '142 g', category: 'Alimentos y conservas', department: 'mercado', status: 'available' },
-    { id: 4, name: 'Café Dualis 250 g', price: 1560, image: "https://i.postimg.cc/WbZBX2hN/cafe_dualis_250_g_precio_1450.png", description: 'Café molido aromático y balanceado.', specificDetails: 'Paquete 250 g', category: 'Alimentos y conservas', department: 'mercado', status: 'available' },
-    { id: 5, name: 'Café Dufiltro 250 g', price: 1560, image: "https://i.postimg.cc/hG26fv31/cafe_Dufiltro_250_g_precio_1450.png", description: 'Café extra fuerte para amantes del sabor intenso.', specificDetails: 'Paquete 250 g', category: 'Alimentos y conservas', department: 'mercado', status: 'available' },
-    { id: 6, name: 'Pan rallado Enepa', price: 480, image: "https://i.postimg.cc/qvQwHpNJ/pan-rallado.webp", description: 'Pan rallado de calidad para empanizados.', specificDetails: 'Paquete', category: 'Alimentos y conservas', department: 'mercado', status: 'available' },
-    { id: 7, name: 'Cartón de huevo 30 u', price: 3240, image: "https://i.postimg.cc/sDWkwVvv/carton_de_huevo_30_u_precio_3000.png", description: 'Huevos frescos en cartón de 30 unidades.', specificDetails: 'Cartón', category: 'Alimentos y conservas', department: 'mercado', status: 'available' },
-    { id: 8, name: 'Leche condensada', price: 500, image: "https://i.postimg.cc/tT2XwjtT/leche_condensada.png", description: 'Leche condensada cremosa, perfecta para postres.', specificDetails: 'Lata 397 g', category: 'Alimentos y conservas', department: 'mercado', status: 'available' },
-    { id: 9, name: 'Harina blanca 1 Kg', price: 650, image: "https://i.postimg.cc/3xc2NHFB/harina_blanca1_kg.png", description: 'Harina refinada ideal para repostería y panadería.', specificDetails: 'Paquete 1 Kg', category: 'Alimentos y conservas', department: 'mercado', status: 'available' },
-
-    // --- SNACKS Y GOLOSINAS ---
-    { id: 10, name: 'Chicoticos Pelly 90 g', price: 430, image: "https://i.postimg.cc/1zv2fXjZ/chicoticos_pelly_90_g_precio_400.png", description: 'Snacks crujientes sabor ajo.', specificDetails: 'Paquete 90 g', category: 'Snacks y golosinas', department: 'mercado', status: 'available' },
-    { id: 11, name: 'Papitas Campesinas', price: 745, image: "https://i.postimg.cc/cLgrDtf9/papitas_campesinas_precio_690.png", description: 'Papas fritas con sabor campesino.', specificDetails: 'Paquete', category: 'Snacks y golosinas', department: 'mercado', status: 'available' },
-    { id: 12, name: 'Pelly Jamón', price: 620, image: "https://i.postimg.cc/pdQV7frX/pelly_jamon_precio_580.png", description: 'Snacks crujientes sabor jamón.', specificDetails: 'Paquete', category: 'Snacks y golosinas', department: 'mercado', status: 'available' },
-
-    // --- SALSAS ---
-    { id: 13, name: 'Mayonesa Mediana', price: 920, image: "https://i.postimg.cc/KzJZw2rR/mayonesa_precio_850.png", description: 'Mayonesa suave y cremosa.', specificDetails: 'Frasco mediano', category: 'Salsas', department: 'mercado', status: 'available' },
-    { id: 14, name: 'Mayonesa Grande', price: 1190, image: "https://i.postimg.cc/Px2t9jzz/mayonesa_precio1100.png", description: 'Mayonesa cremosa en presentación grande.', specificDetails: 'Frasco grande', category: 'Salsas', department: 'mercado', status: 'available' },
-
-    // --- HIGIENE PERSONAL ---
-    { id: 15, name: 'Cuchilla de Afeitar', price: 110, image: "https://i.postimg.cc/8CdkdW7x/cuchilla_de_afeitar_precio_100.png", description: 'Cuchilla desechable para un afeitado cómodo.', specificDetails: 'Unidad', category: 'Higiene personal', department: 'mercado', status: 'available' },
-    { id: 16, name: 'Jabón Marwa', price: 160, image: "https://i.postimg.cc/3RK8tRpR/jabon_marwa_precio_150.png", description: 'Jabón de tocador suave.', specificDetails: 'Pastilla', category: 'Higiene personal', department: 'mercado', status: 'available' },
-    { id: 17, name: 'Papel Sanitario', price: 530, image: "https://i.postimg.cc/bwW289qD/papel_sanitario_precio_490i.png", description: 'Papel higiénico suave y resistente.', specificDetails: 'Paquete', category: 'Higiene personal', department: 'mercado', status: 'available' },
-    { id: 18, name: 'Toallas Sanitarias', price: 480, image: "https://i.postimg.cc/KjjZyH0b/toallas_sanitarias_precio_450.png", description: 'Toallas sanitarias de alta absorción.', specificDetails: 'Paquete', category: 'Higiene personal', department: 'mercado', status: 'available' },
-    { id: 19, name: 'Toallas Húmedas', price: 750, image: "https://i.postimg.cc/W4ZSP3cw/toallas_humedas_precio_690.png", description: 'Toallitas húmedas para cuidado diario.', specificDetails: 'Paquete', category: 'Higiene personal', department: 'mercado', status: 'available' },
-
-    // --- ASEO DEL HOGAR ---
-    { id: 20, name: 'Jabón de Lavar', price: 270, image: "https://i.postimg.cc/V6YfK6Mz/jabon_de_lavar_precio_250.png", description: 'Jabón de barra para ropa.', specificDetails: 'Pastilla', category: 'Aseo del hogar', department: 'mercado', status: 'available' },
-
-    // --- PERFUMES Y DESODORANTES ---
-    { id: 21, name: 'Perfume Candy', price: 3350, image: "https://i.postimg.cc/vTgJRyhp/perfume_candy_precio_3100.png", description: 'Perfume dulce y moderno con notas frutales.', specificDetails: 'Frasco 50 ml', category: 'Perfumes y desodorantes', department: 'mercado', status: 'available' },
-    { id: 22, name: 'Perfume genérico', price: 3350, image: "https://i.postimg.cc/ZKrT0PPG/perfume_precio_3100.png", description: 'Perfume elegante de uso diario.', specificDetails: '50 ml', category: 'Perfumes y desodorantes', department: 'mercado', status: 'available' },
-    { id: 23, name: 'Perfume Q', price: 3350, image: "https://i.postimg.cc/CL03P3Dn/perfume_q_precio_3100.png", description: 'Perfume sofisticado con notas florales.', specificDetails: '50 ml', category: 'Perfumes y desodorantes', department: 'mercado', status: 'available' },
-    { id: 24, name: 'Desodorante Obao', price: 1190, image: "https://i.postimg.cc/PxtXSxD2/desodorante_obao_precio_1100.png", description: 'Desodorante de larga duración.', specificDetails: 'Roll-on', category: 'Perfumes y desodorantes', department: 'mercado', status: 'available' },
-    { id: 25, name: 'Desodorante Rush Blanco', price: 1080, image: "https://i.postimg.cc/FR9rTRS8/desodorante_rush_blanco_precio_1000.png", description: 'Desodorante fresco y ligero.', specificDetails: 'Roll-on', category: 'Perfumes y desodorantes', department: 'mercado', status: 'available' },
-    { id: 26, name: 'Desodorante Rush', price: 1080, image: "https://i.postimg.cc/sXVjTXSF/desodorante_rush_precio_1000.png", description: 'Desodorante clásico de aroma intenso.', specificDetails: 'Spray', category: 'Perfumes y desodorantes', department: 'mercado', status: 'available' },
-    { id: 27, name: 'Colonia Niña', price: 1190, image: "https://i.postimg.cc/G3v04rsM/colonia_nina.png", description: 'Colonia infantil con fragancia suave.', specificDetails: 'Botella 100 ml', category: 'Perfumes y desodorantes', department: 'mercado', status: 'available' },
-
-    // --- PASTAS Y FIDEOS ---
-    { id: 28, name: 'Macarrones', price: 320, image: "https://i.postimg.cc/Hsmz1H69/macarrones_precio_300.png", description: 'Pasta corta ideal para gratinados.', specificDetails: '460 g', category: 'Pastas y fideos', department: 'mercado', status: 'available' },
-    { id: 29, name: 'Sopas instantáneas', price: 170, image: "https://i.postimg.cc/FzNTpQqK/sopas_instantaneas_precio_160.png", description: 'Fideos instantáneos listos en minutos.', specificDetails: 'Paquete', category: 'Pastas y fideos', department: 'mercado', status: 'available' },
-
-    // --- BEBIDAS ALCOHÓLICAS Y MALTA ---
-    { id: 30, name: 'Licor de fresa', price: 2700, image: "https://i.postimg.cc/59YT2x5p/licor_de_fresa_precio_2500.png", description: 'Licor dulce con sabor a fresa.', specificDetails: 'Botella', category: 'Bebidas', department: 'mercado', status: 'available' },
-    { id: 31, name: 'Licor Cocobay', price: 2700, image: "https://i.postimg.cc/7ZDW90Fz/locor_cocobay_precio_2500.png", description: 'Licor tropical sabor coco.', specificDetails: 'Botella', category: 'Bebidas', department: 'mercado', status: 'available' },
-    { id: 32, name: 'Whisky Spirit 200 ml', price: 350, image: "https://i.postimg.cc/4N8W6q1t/tea_precio_320.png", description: 'Whisky ligero en presentación pequeña.', specificDetails: '200 ml', category: 'Bebidas', department: 'mercado', status: 'available' },
-    { id: 33, name: 'Whisky 1L', price: 1450, image: "https://i.postimg.cc/cLyrb4T0/whisky_1L_precio_1350.png", description: 'Whisky premium en botella de 1 litro.', specificDetails: 'Botella 1 L', category: 'Bebidas', department: 'mercado', status: 'available' },
-    { id: 34, name: 'Whisky Sir Albin', price: 590, image: "https://i.postimg.cc/y84kbYnC/whisky_sir_albin_precio_550.png", description: 'Whisky suave en presentación pequeña.', specificDetails: 'Botella pequeña', category: 'Bebidas', department: 'mercado', status: 'available' },
-    { id: 35, name: 'Vino Pluvium', price: 1290, image: "https://i.postimg.cc/XNLLWmmx/vino_pluvium_precio_1200.png", description: 'Vino de mesa con sabor afrutado.', specificDetails: 'Botella', category: 'Bebidas', department: 'mercado', status: 'available' },
-
-    // --- ELECTRÓNICOS Y ACCESORIOS (dentro de mercado) ---
-    { id: 36, name: 'Baterías Triple A', price: 320, image: "https://i.postimg.cc/DZ2vxZsT/Gemini_Generated_Image_824rio824rio824r.png", description: 'Paquete de baterías AAA de larga duración.', specificDetails: 'Pack de 4 unidades', category: 'Electrónicos y accesorios', department: 'mercado', status: 'available' },
-
-    // ========== SECCIÓN ROPA Y CALZADO ==========
-    { id: 37, name: 'Mono Azul Casual', price: 0, image: "https://i.postimg.cc/cLqk1wHC/modelomonoazul.png", description: 'Mono azul de moda casual, perfecto para el día a día.', specificDetails: 'Tallas S-M-L | PRÓXIMAMENTE', category: 'Próximamente', department: 'ropa', status: 'unavailable' },
-    { id: 38, name: 'Mono Negro Elegante', price: 0, image: "https://i.postimg.cc/T38N2gww/modelomononegro.png", description: 'Mono negro elegante para ocasiones especiales.', specificDetails: 'Tallas S-M-L | PRÓXIMAMENTE', category: 'Próximamente', department: 'ropa', status: 'unavailable' },
-    { id: 39, name: 'Tenis Warrior Modelo', price: 0, image: "https://i.postimg.cc/Mpk3ZVTB/modelosteniswarior.png", description: 'Tenis deportivos Warrior, máximo confort y estilo.', specificDetails: 'Tallas 38-45 | PRÓXIMAMENTE', category: 'Próximamente', department: 'ropa', status: 'unavailable' },
-    { id: 40, name: 'Vestido Amarillo Verano', price: 0, image: "https://i.postimg.cc/NjhCGmM9/modelovestidoa_arillo.png", description: 'Vestido amarillo fresco ideal para el verano.', specificDetails: 'Tallas XS-S-M | PRÓXIMAMENTE', category: 'Próximamente', department: 'ropa', status: 'unavailable' },
-    { id: 41, name: 'Modelo Tenis Warrior', price: 0, image: "https://i.postimg.cc/rwSnDs0x/modseloteniswarior.png", description: 'Tenis Warrior en presentación de modelo.', specificDetails: 'Tallas 38-45 | PRÓXIMAMENTE', category: 'Próximamente', department: 'ropa', status: 'unavailable' },
-    { id: 42, name: 'Chaqueta Capucha Morada', price: 0, image: "https://i.postimg.cc/P5m3CJpM/muchachacapuchamorada.png", description: 'Chaqueta con capucha morada, estilo urbano.', specificDetails: 'Tallas S-M-L | PRÓXIMAMENTE', category: 'Próximamente', department: 'ropa', status: 'unavailable' },
-    { id: 43, name: 'Chaqueta Pescador', price: 0, image: "https://i.postimg.cc/wBgWLzL5/muchachapescador.png", description: 'Chaqueta estilo pescador, resistente y cómoda.', specificDetails: 'Tallas S-M-L | PRÓXIMAMENTE', category: 'Próximamente', department: 'ropa', status: 'unavailable' },
-    { id: 44, name: 'Conjunto Tenis Warrior', price: 0, image: "https://i.postimg.cc/fbDHmsYM/muchachaplazateniswarior.png", description: 'Conjunto completo con Tenis Warrior.', specificDetails: 'Tallas S-M-L | PRÓXIMAMENTE', category: 'Próximamente', department: 'ropa', status: 'unavailable' },
-    { id: 45, name: 'Short 4 Puertas Mujer', price: 0, image: "https://i.postimg.cc/Dz6xcNc7/muchachashort4puertas.png", description: 'Short deportivo mujer, marca 4 Puertas.', specificDetails: 'Tallas S-M-L | PRÓXIMAMENTE', category: 'Próximamente', department: 'ropa', status: 'unavailable' },
-    { id: 46, name: 'Conjunto 4 Puertas Hombre', price: 0, image: "https://i.postimg.cc/9fbLBkBm/muchacho4puertas.png", description: 'Conjunto completo hombre, marca 4 Puertas.', specificDetails: 'Tallas S-M-L | PRÓXIMAMENTE', category: 'Próximamente', department: 'ropa', status: 'unavailable' },
-    { id: 47, name: 'Tenis Warrior Hombre', price: 0, image: "https://i.postimg.cc/fbC8vPvJ/muchachoplazateniswarior.png", description: 'Tenis Warrior para hombre, máximo rendimiento.', specificDetails: 'Tallas 40-45 | PRÓXIMAMENTE', category: 'Próximamente', department: 'ropa', status: 'unavailable' },
-    { id: 48, name: 'Conjunto 4 Puertas Mujer', price: 0, image: "https://i.postimg.cc/mDr8pSd9/muchavha4puertas.png", description: 'Conjunto completo mujer, marca 4 Puertas.', specificDetails: 'Tallas XS-S-M | PRÓXIMAMENTE', category: 'Próximamente', department: 'ropa', status: 'unavailable' },
-    { id: 49, name: 'Pitusa Talla 34 - Acelan', price: 0, image: "https://i.postimg.cc/g0sgK7Kv/pitusa_marca_acelan_talla_34_precio.jpg", description: 'Pitusa marca Acelan, talla 34, calidad premium.', specificDetails: 'Talla 34 | PRÓXIMAMENTE', category: 'Próximamente', department: 'ropa', status: 'unavailable' },
-    { id: 50, name: 'Tenis Warrior Original', price: 0, image: "https://i.postimg.cc/bJv3VR6k/tenis_warior.png", description: 'Tenis Warrior original, durabilidad garantizada.', specificDetails: 'Tallas 36-45 | PRÓXIMAMENTE', category: 'Próximamente', department: 'ropa', status: 'unavailable' },
-
-    // ========== SECCIÓN ELECTRODOMÉSTICOS ==========
-    { id: 51, name: 'Smart TV 32 Pulgadas', price: 0, image: "https://i.postimg.cc/gkCgDSyr/smart_tv_32_pulgadas.png", description: 'Smart TV 32" Full HD con conexión Wi-Fi y apps integradas.', specificDetails: '32" | Full HD | Smart TV | PRÓXIMAMENTE', category: 'Próximamente', department: 'electro', status: 'unavailable' },
-    { id: 52, name: 'Smart TV 50 Pulgadas', price: 0, image: "https://i.postimg.cc/9XN84FrG/smart_tv_50_pulgadas.jpg", description: 'Smart TV 50" 4K UHD con HDR y sistema operativo avanzado.', specificDetails: '50" | 4K UHD | HDR | Smart TV | PRÓXIMAMENTE', category: 'Próximamente', department: 'electro', status: 'unavailable' },
-    { id: 53, name: 'Smart TV 55 Pulgadas', price: 0, image: "https://i.postimg.cc/xTw6RxGb/smart_tv_55_pulgadas.png", description: 'Smart TV 55" 4K con Dolby Vision y sonido envolvente.', specificDetails: '55" | 4K | Dolby Vision | Smart TV | PRÓXIMAMENTE', category: 'Próximamente', department: 'electro', status: 'unavailable' }
-  ],
-
-  // Función auxiliar para obtener producto por ID
-  obtenerPorId: function(id) {
-    return this.productos.find(p => p.id === id);
-  },
-
-  // Función para obtener productos por departamento
-  obtenerPorDepartamento: function(departamento) {
-    return this.productos.filter(p => p.department === departamento);
-  },
-
-  // Función para obtener productos DISPONIBLES por departamento
-  obtenerDisponiblesPorDepartamento: function(departamento) {
-    return this.productos.filter(p => p.department === departamento && p.status === 'available');
-  },
-
-  // Función para obtener productos PRÓXIMAMENTE por departamento
-  obtenerProximosPorDepartamento: function(departamento) {
-    return this.productos.filter(p => p.department === departamento && p.status === 'unavailable');
-  },
-
-  // Función para obtener productos por categoría dentro de un departamento
-  obtenerPorDepartamentoYCategoria: function(departamento, categoria) {
-    return this.productos.filter(p => 
-      p.department === departamento && 
-      p.category === categoria
-    );
-  },
-
-  // Función para obtener todas las categorías de un departamento
-  obtenerCategoriasPorDepartamento: function(departamento) {
-    const productosDepartamento = this.productos.filter(p => p.department === departamento);
-    const categorias = productosDepartamento.map(p => p.category);
-    return [...new Set(categorias)];
-  }
+window.catalogo = {
+    version: '3.0',
+    fecha: new Date().toISOString().split('T')[0],
+    productos: [
+        // ALIMENTOS Y CONSERVAS
+        { id: 1, nombre: 'Atún', categoria: 'Alimentos y conservas', precio: 500, marca: 'Docanned Star', imagen: 'https://i.postimg.cc/76xHK6zt/atun_precio_500.png', descripcion: 'Atún en aceite vegetal', detalle: '200g', stock: 10, activo: true, department: 'mercado' },
+        { id: 2, nombre: 'Pasta de tomate', categoria: 'Alimentos y conservas', precio: 380, marca: 'N/A', imagen: 'https://i.postimg.cc/gjjYPTNv/pasta_tomate_precio_350.png', descripcion: 'Pasta de tomate', detalle: '400g', stock: 10, activo: true, department: 'mercado' },
+        { id: 3, nombre: 'Aceitunas Verdes', categoria: 'Alimentos y conservas', precio: 750, marca: 'Fragata', imagen: 'https://i.postimg.cc/4yyJTSBj/pimiento_presio_750.png', descripcion: 'Rodajas con Pimiento', detalle: '200g', stock: 10, activo: true, department: 'mercado' },
+        { id: 4, nombre: 'Café Dualis', categoria: 'Alimentos y conservas', precio: 1450, marca: 'Dualis', imagen: 'https://i.postimg.cc/WbZBX2hN/cafe_dualis_250_g_precio_1450.png', descripcion: 'Café molido', detalle: '250g', stock: 10, activo: true, department: 'mercado' },
+        { id: 5, nombre: 'Café Dufiltro', categoria: 'Alimentos y conservas', precio: 1450, marca: 'Dufiltro', imagen: 'https://i.postimg.cc/hG26fv31/cafe_Dufiltro_250_g_precio_1450.png', descripcion: 'Café molido', detalle: '250g', stock: 10, activo: true, department: 'mercado' },
+        { id: 6, nombre: 'Pan rallado Enepa', categoria: 'Alimentos y conservas', precio: 450, marca: 'Enepa', imagen: 'https://i.postimg.cc/qvQwHpNJ/pan-rallado.webp', descripcion: 'Pan rallado para empanar', detalle: 'Paquete', stock: 10, activo: true, department: 'mercado' },
+        { id: 7, nombre: 'Cartón de huevo', categoria: 'Alimentos y conservas', precio: 3000, marca: 'N/A', imagen: 'https://i.postimg.cc/sDWkwVvv/carton_de_huevo_30_u_precio_3100.png', descripcion: 'Huevos frescos', detalle: '30 unidades', stock: 10, activo: true, department: 'mercado' },
+        { id: 8, nombre: 'Leche condensada', categoria: 'Alimentos y conservas', precio: 520, marca: 'N/A', imagen: 'https://i.postimg.cc/tT2XwjtT/leche_condensada.png', descripcion: 'Leche condensada', detalle: '397g', stock: 10, activo: true, department: 'mercado' },
+        { id: 9, nombre: 'Harina blanca', categoria: 'Alimentos y conservas', precio: 600, marca: 'N/A', imagen: 'https://i.postimg.cc/3xc2NHFB/harina_blanca1_kg.png', descripcion: 'Harina de trigo', detalle: '1kg', stock: 10, activo: true, department: 'mercado' },
+        { id: 42, nombre: 'Frijoles Negros', categoria: 'Alimentos y conservas', precio: 820, marca: 'Da Vicio', imagen: 'https://i.postimg.cc/wvkcjZNf/frijol_negro.png', descripcion: 'Frijoles negros seleccionados', detalle: 'Paquete', stock: 5, activo: true, department: 'mercado' },
+        { id: 43, nombre: 'Avena en Hojuelas', categoria: 'Alimentos y conservas', precio: 600, marca: 'El Puritano', imagen: 'https://i.postimg.cc/sDHmWkNL/avena.png', descripcion: 'Avena integral', detalle: 'Paquete', stock: 6, activo: true, department: 'mercado' },
+        { id: 48, nombre: 'Atole', categoria: 'Alimentos y conservas', precio: 400, marca: 'N/A', imagen: 'https://i.postimg.cc/fTqCdGPh/atole.png', descripcion: 'Mezcla en polvo para atole', detalle: 'Sobre', stock: 10, activo: true, department: 'mercado' },
+        { id: 54, nombre: 'Aceite', categoria: 'Alimentos y conservas', precio: 990, marca: 'Naz', imagen: 'https://i.postimg.cc/hPZsmk5N/aceite.png', descripcion: 'Aceite de girasol', detalle: '1L', stock: 10, activo: true, department: 'mercado' },
+        
+        // SNACKS Y GOLOSINAS
+        { id: 10, nombre: 'Chicoticos Pelly', categoria: 'Snacks y golosinas', precio: 400, marca: 'Pelly', imagen: 'https://i.postimg.cc/1zv2fXjZ/chicoticos_pelly_90_g_precio_400.png', descripcion: 'Snack de maíz', detalle: '90g', stock: 10, activo: true, department: 'mercado' },
+        { id: 11, nombre: 'Papitas Campesinas', categoria: 'Snacks y golosinas', precio: 690, marca: 'Acho', imagen: 'https://i.postimg.cc/cLgrDtf9/papitas_campesinas_precio_690.png', descripcion: 'Papas fritas', detalle: 'Paquete', stock: 10, activo: true, department: 'mercado' },
+        { id: 12, nombre: 'Pelly de Jamón', categoria: 'Snacks y golosinas', precio: 580, marca: 'Pelly', imagen: 'https://i.postimg.cc/pdQV7frX/pelly_jamon_precio_580.png', descripcion: 'Snack sabor jamón', detalle: 'Paquete', stock: 10, activo: true, department: 'mercado' },
+        
+        // SALSAS
+        { id: 13, nombre: 'Mayonesa', categoria: 'Salsas', precio: 850, marca: 'N/A', imagen: 'https://i.postimg.cc/KzJZw2rR/mayonesa_precio_850.png', descripcion: 'Mayonesa', detalle: 'Frasco mediano', stock: 10, activo: true, department: 'mercado' },
+        { id: 14, nombre: 'Mayonesa Grande', categoria: 'Salsas', precio: 1100, marca: 'N/A', imagen: 'https://i.postimg.cc/Px2t9jzz/mayonesa_precio1100.png', descripcion: 'Mayonesa', detalle: 'Frasco grande', stock: 10, activo: true, department: 'mercado' },
+        { id: 57, nombre: 'Ketchup', categoria: 'Salsas', precio: 450, marca: 'N/A', imagen: 'https://i.postimg.cc/15XcyWzm/ketchup.png', descripcion: 'Salsa de tomate', detalle: 'Botella', stock: 10, activo: true, department: 'mercado' },
+        { id: 58, nombre: 'Mostaza', categoria: 'Salsas', precio: 450, marca: 'N/A', imagen: 'https://i.postimg.cc/L6Wk5zqs/mostaza.png', descripcion: 'Salsa de mostaza', detalle: 'Botella', stock: 10, activo: true, department: 'mercado' },
+        { id: 61, nombre: 'Vinagreta', categoria: 'Salsas', precio: 350, marca: 'N/A', imagen: 'https://i.postimg.cc/g0WZL4m5/vinagret.webp', descripcion: 'Salsa para ensaladas', detalle: 'Botella', stock: 10, activo: true, department: 'mercado' },
+        
+        // HIGIENE PERSONAL
+        { id: 15, nombre: 'Cuchilla de Afeitar', categoria: 'Higiene personal', precio: 100, marca: 'N/A', imagen: 'https://i.postimg.cc/8CdkdW7x/cuchilla_de_afeitar_precio_100.png', descripcion: 'Cuchilla desechable', detalle: 'Unidad', stock: 10, activo: true, department: 'mercado' },
+        { id: 16, nombre: 'Jabón Marwa', categoria: 'Higiene personal', precio: 150, marca: 'Marwa', imagen: 'https://i.postimg.cc/3RK8tRpR/jabon_marwa_precio_150.png', descripcion: 'Jabón de tocador', detalle: 'Pastilla', stock: 10, activo: true, department: 'mercado' },
+        { id: 17, nombre: 'Papel Sanitario', categoria: 'Higiene personal', precio: 490, marca: 'La Excelencia', imagen: 'https://i.postimg.cc/bwW289qD/papel_sanitario_precio_490i.png', descripcion: 'Papel higiénico', detalle: 'Paquete', stock: 10, activo: true, department: 'mercado' },
+        { id: 18, nombre: 'Toallas Sanitarias', categoria: 'Higiene personal', precio: 450, marca: 'Kotex', imagen: 'https://i.postimg.cc/KjjZyH0b/toallas_sanitarias_precio_450.png', descripcion: 'Con alas', detalle: 'Paquete', stock: 10, activo: true, department: 'mercado' },
+        { id: 19, nombre: 'Toallas Húmedas', categoria: 'Higiene personal', precio: 690, marca: 'N/A', imagen: 'https://i.postimg.cc/W4ZSP3cw/toallas_humedas_precio_690.png', descripcion: 'Toallas de limpieza', detalle: 'Paquete', stock: 10, activo: true, department: 'mercado' },
+        { id: 56, nombre: 'Jabón de Carbón', categoria: 'Higiene personal', precio: 200, marca: 'N/A', imagen: 'https://i.postimg.cc/Y9xfCZgB/jabon_carbon.png', descripcion: 'Jabón artesanal', detalle: 'Pastilla', stock: 10, activo: true, department: 'mercado' },
+        
+        // ASEO DEL HOGAR
+        { id: 20, nombre: 'Jabón de Lavar', categoria: 'Aseo del hogar', precio: 250, marca: 'N/A', imagen: 'https://i.postimg.cc/V6YfK6Mz/jabon_de_lavar_precio_250.png', descripcion: 'Jabón para lavar ropa', detalle: 'Pastilla', stock: 10, activo: true, department: 'mercado' },
+        { id: 51, nombre: 'Detergente Tid', categoria: 'Aseo del hogar', precio: 630, marca: 'Tid', imagen: 'https://i.postimg.cc/3RhF7YkZ/detergente.png', descripcion: 'Detergente en polvo', detalle: 'Bolsa', stock: 6, activo: true, department: 'mercado' },
+        
+        // PERFUMES Y DESODORANTES
+        { id: 21, nombre: 'Perfume Candy', categoria: 'Perfumes y desodorantes', precio: 3100, marca: 'Candy', imagen: 'https://i.postimg.cc/vTgJRyhp/perfume_candy_precio_3100.png', descripcion: 'Perfume', detalle: '50ml', stock: 10, activo: true, department: 'mercado' },
+        { id: 22, nombre: 'Perfume Genérico', categoria: 'Perfumes y desodorantes', precio: 3100, marca: 'N/A', imagen: 'https://i.postimg.cc/ZKrT0PPG/perfume_precio_3100.png', descripcion: 'Perfume', detalle: '50ml', stock: 10, activo: true, department: 'mercado' },
+        { id: 23, nombre: 'Perfume Q', categoria: 'Perfumes y desodorantes', precio: 3100, marca: 'Q', imagen: 'https://i.postimg.cc/CL03P3Dn/perfume_q_precio_3100.png', descripcion: 'Perfume', detalle: '50ml', stock: 10, activo: true, department: 'mercado' },
+        { id: 24, nombre: 'Desodorante Obao', categoria: 'Perfumes y desodorantes', precio: 1100, marca: 'Obao', imagen: 'https://i.postimg.cc/PxtXSxD2/desodorante_obao_precio_1100.png', descripcion: 'Roll-on', detalle: 'Unidad', stock: 10, activo: true, department: 'mercado' },
+        { id: 25, nombre: 'Desodorante Rush Blanco', categoria: 'Perfumes y desodorantes', precio: 650, marca: 'Rush', imagen: 'https://i.postimg.cc/FR9rTRS8/desodorante_rush_blanco_precio_1000.png', descripcion: 'Roll-on', detalle: 'Unidad', stock: 10, activo: true, department: 'mercado' },
+        { id: 26, nombre: 'Desodorante Rush', categoria: 'Perfumes y desodorantes', precio: 650, marca: 'Rush', imagen: 'https://i.postimg.cc/sXVjTXSF/desodorante_rush_precio_1000.png', descripcion: 'Roll-on', detalle: 'Unidad', stock: 10, activo: true, department: 'mercado' },
+        { id: 27, nombre: 'Colonia Niña', categoria: 'Perfumes y desodorantes', precio: 1100, marca: 'N/A', imagen: 'https://i.postimg.cc/G3v04rsM/colonia_nina.png', descripcion: 'Colonia infantil', detalle: '100ml', stock: 10, activo: true, department: 'mercado' },
+        
+        // PASTAS Y FIDEOS
+        { id: 28, nombre: 'Macarrones', categoria: 'Pastas y fideos', precio: 300, marca: 'Ada', imagen: 'https://i.postimg.cc/Hsmz1H69/macarrones_precio_300.png', descripcion: 'Pasta', detalle: '460g', stock: 10, activo: true, department: 'mercado' },
+        { id: 29, nombre: 'Sopas instantáneas', categoria: 'Pastas y fideos', precio: 160, marca: 'Varios', imagen: 'https://i.postimg.cc/FzNTpQqK/sopas_instantaneas_precio_160.png', descripcion: 'Sopa rápida', detalle: 'Paquete', stock: 10, activo: true, department: 'mercado' },
+        { id: 44, nombre: 'Espaguetis', categoria: 'Pastas y fideos', precio: 270, marca: 'Topside', imagen: 'https://i.postimg.cc/2yLp0hKg/espaguetis.png', descripcion: 'Pasta larga', detalle: 'Paquete', stock: 15, activo: true, department: 'mercado' },
+        
+        // BEBIDAS
+        { id: 30, nombre: 'Licor de fresa', categoria: 'Bebidas', precio: 2500, marca: 'Albín', imagen: 'https://i.postimg.cc/59YT2x5p/licor_de_fresa_precio_2500.png', descripcion: 'Crema de fresa', detalle: 'Botella', stock: 10, activo: true, department: 'mercado' },
+        { id: 31, nombre: 'Licor Cocobay', categoria: 'Bebidas', precio: 2500, marca: 'Cocobay', imagen: 'https://i.postimg.cc/7ZDW90Fz/locor_cocobay_precio_2500.png', descripcion: 'Licor de coco', detalle: 'Botella', stock: 10, activo: true, department: 'mercado' },
+        { id: 32, nombre: 'Whisky Spirit', categoria: 'Bebidas', precio: 320, marca: 'Spirit', imagen: 'https://i.postimg.cc/4N8W6q1t/tea_precio_320.png', descripcion: 'Whisky', detalle: '200ml', stock: 10, activo: true, department: 'mercado' },
+        { id: 33, nombre: 'Whisky Sir Albin', categoria: 'Bebidas', precio: 1350, marca: 'Albín', imagen: 'https://i.postimg.cc/cLyrb4T0/whisky_1L_precio_1350.png', descripcion: 'Whisky', detalle: '1L', stock: 10, activo: true, department: 'mercado' },
+        { id: 34, nombre: 'Whisky Sir Albin', categoria: 'Bebidas', precio: 550, marca: 'Albín', imagen: 'https://i.postimg.cc/y84kbYnC/whisky_sir_albin_precio_550.png', descripcion: 'Whisky', detalle: '500ml', stock: 10, activo: true, department: 'mercado' },
+        { id: 35, nombre: 'Vino Pluvium', categoria: 'Bebidas', precio: 1200, marca: 'Pluvium', imagen: 'https://i.postimg.cc/XNLLWmmx/vino_pluvium_precio_1200.png', descripcion: 'Vino tinto', detalle: 'Botella', stock: 10, activo: true, department: 'mercado' },
+        { id: 37, nombre: 'Cerveza Cristal', categoria: 'Bebidas', precio: 300, marca: 'Cristal', imagen: 'https://i.postimg.cc/d1JxDCW3/cervaza-cristal-1.jpg', descripcion: 'Cerveza', detalle: 'Lata 355ml', stock: 12, activo: true, department: 'mercado' },
+        { id: 38, nombre: 'Cerveza Holland', categoria: 'Bebidas', precio: 230, marca: 'Holland', imagen: 'https://i.postimg.cc/nLn8gryr/cerveza-holland-(1).png', descripcion: 'Cerveza importada', detalle: 'Lata', stock: 10, activo: true, department: 'mercado' },
+        { id: 39, nombre: 'Refresco Pepsi', categoria: 'Bebidas', precio: 260, marca: 'Pepsi', imagen: 'https://i.postimg.cc/ZY7psrx7/pepsi.webp', descripcion: 'Refresco', detalle: 'Lata', stock: 15, activo: true, department: 'mercado' },
+        { id: 40, nombre: 'Jugo YES', categoria: 'Bebidas', precio: 620, marca: 'YES', imagen: 'https://i.postimg.cc/fy2cxdBH/jugo_j.png', descripcion: 'Jugo', detalle: '1L', stock: 8, activo: true, department: 'mercado' },
+        { id: 41, nombre: 'Agua Embotellada', categoria: 'Bebidas', precio: 650, marca: 'N/A', imagen: 'https://i.postimg.cc/m2gVtL8J/agua.png', descripcion: 'Agua', detalle: '1.5L', stock: 10, activo: true, department: 'mercado' },
+        { id: 59, nombre: 'Cerveza Parranda', categoria: 'Bebidas', precio: 250, marca: 'Parranda', imagen: 'https://i.postimg.cc/d31dt1w9/parranda.webp', descripcion: 'Cerveza', detalle: 'Lata', stock: 10, activo: true, department: 'mercado' },
+        
+        // CONGELADOS
+        { id: 46, nombre: 'Patatas Fritas', categoria: 'Congelados', precio: 1200, marca: 'Vima', imagen: 'https://i.postimg.cc/rs76dmR8/patatas_fritas.png', descripcion: 'Papas prefritas congeladas', detalle: '1kg', stock: 4, activo: true, department: 'mercado' },
+        { id: 47, nombre: 'Nuggets de Pollo', categoria: 'Congelados', precio: 550, marca: 'La Perla', imagen: 'https://i.postimg.cc/KYSnrxDm/nuggets_de_pollo.webp', descripcion: 'Nuggets de pollo', detalle: 'Paquete', stock: 5, activo: true, department: 'mercado' },
+        { id: 50, nombre: 'Croquetas', categoria: 'Congelados', precio: 450, marca: 'N/A', imagen: 'https://i.postimg.cc/br4XGJSy/cdroquetas_sabor_jamon.png', descripcion: 'Croquetas sabor jamón', detalle: 'Bolsa', stock: 10, activo: true, department: 'mercado' },
+        { id: 55, nombre: 'Bocaditos de Pollo', categoria: 'Congelados', precio: 550, marca: 'N/A', imagen: 'https://i.postimg.cc/GpGxZHmd/bocadito_de_pollo.png', descripcion: 'Bocaditos crujientes', detalle: 'Paquete', stock: 10, activo: true, department: 'mercado' },
+        { id: 60, nombre: 'Lomo de Res', categoria: 'Congelados', precio: 800, marca: 'N/A', imagen: 'https://i.postimg.cc/nh7mLNbw/res.webp', descripcion: 'Corte de res', detalle: '250g', stock: 10, activo: true, department: 'mercado' },
+        
+        // ELECTRÓNICOS
+        { id: 36, nombre: 'Baterías Triple A', categoria: 'Electrónicos', precio: 300, marca: 'N/A', imagen: 'https://i.postimg.cc/DZ2vxZsT/Gemini_Generated_Image_824rio824rio824r.png', descripcion: 'Baterías', detalle: 'Pack 4 unidades', stock: 10, activo: true, department: 'mercado' },
+        
+        // VARIOS
+        { id: 53, nombre: 'Fósforos', categoria: 'Varios', precio: 30, marca: 'N/A', imagen: 'https://i.postimg.cc/8P1txyJ1/fsforos.png', descripcion: 'Caja de cerillos', detalle: 'Caja', stock: 50, activo: true, department: 'mercado' }
+    ],
+    
+    // Función para obtener todos los productos activos
+    obtenerActivos: function() {
+        return this.productos.filter(p => p.activo === true && p.stock > 0);
+    },
+    
+    // Función para buscar por ID
+    obtenerPorId: function(id) {
+        return this.productos.find(p => p.id == id);
+    },
+    
+    // Función para buscar por categoría
+    obtenerPorCategoria: function(categoria) {
+        return this.productos.filter(p => p.categoria === categoria && p.activo === true);
+    },
+    
+    // Función para buscar por texto
+    buscar: function(termino) {
+        if (!termino) return this.obtenerActivos();
+        const t = termino.toLowerCase();
+        return this.productos.filter(p => 
+            p.activo === true && 
+            (p.nombre.toLowerCase().includes(t) || 
+             p.descripcion.toLowerCase().includes(t) || 
+             p.categoria.toLowerCase().includes(t))
+        );
+    }
 };
 
-// ✅ Hacer disponible globalmente para el HTML
-window.catalogo = catalogo;
+// Exportar para compatibilidad
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = window.catalogo;
+}
+
+console.log(`📦 Catálogo El Resolvito v3.0 cargado: ${window.catalogo.productos.length} productos disponibles`);
