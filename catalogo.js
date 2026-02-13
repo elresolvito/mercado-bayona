@@ -1,6 +1,6 @@
 // ============================================
 // CATÁLOGO DE PRODUCTOS - EL RESOLVITO
-// Versión: 3.0 (Estilo Mercado Único)
+// Versión: 3.0 (Estilo Imagen Grande)
 // ============================================
 
 window.catalogo = {
@@ -8,19 +8,19 @@ window.catalogo = {
     fecha: new Date().toISOString().split('T')[0],
     productos: [
         // ALIMENTOS Y CONSERVAS
-        { id: 1, nombre: 'Atún', categoria: 'Alimentos y conservas', precio: 500, marca: 'Docanned Star', imagen: 'https://i.postimg.cc/76xHK6zt/atun_precio_500.png', descripcion: 'Atún en aceite vegetal', detalle: '200g', stock: 10, activo: true, department: 'mercado' },
+        { id: 1, nombre: 'Atún en aceite', categoria: 'Alimentos y conservas', precio: 500, marca: 'Docanned Star', imagen: 'https://i.postimg.cc/76xHK6zt/atun_precio_500.png', descripcion: 'Atún en aceite vegetal', detalle: '200g', stock: 10, activo: true, department: 'mercado' },
         { id: 2, nombre: 'Pasta de tomate', categoria: 'Alimentos y conservas', precio: 380, marca: 'N/A', imagen: 'https://i.postimg.cc/gjjYPTNv/pasta_tomate_precio_350.png', descripcion: 'Pasta de tomate', detalle: '400g', stock: 10, activo: true, department: 'mercado' },
         { id: 3, nombre: 'Aceitunas Verdes', categoria: 'Alimentos y conservas', precio: 750, marca: 'Fragata', imagen: 'https://i.postimg.cc/4yyJTSBj/pimiento_presio_750.png', descripcion: 'Rodajas con Pimiento', detalle: '200g', stock: 10, activo: true, department: 'mercado' },
         { id: 4, nombre: 'Café Dualis', categoria: 'Alimentos y conservas', precio: 1450, marca: 'Dualis', imagen: 'https://i.postimg.cc/WbZBX2hN/cafe_dualis_250_g_precio_1450.png', descripcion: 'Café molido', detalle: '250g', stock: 10, activo: true, department: 'mercado' },
         { id: 5, nombre: 'Café Dufiltro', categoria: 'Alimentos y conservas', precio: 1450, marca: 'Dufiltro', imagen: 'https://i.postimg.cc/hG26fv31/cafe_Dufiltro_250_g_precio_1450.png', descripcion: 'Café molido', detalle: '250g', stock: 10, activo: true, department: 'mercado' },
-        { id: 6, nombre: 'Pan rallado Enepa', categoria: 'Alimentos y conservas', precio: 450, marca: 'Enepa', imagen: 'https://i.postimg.cc/qvQwHpNJ/pan-rallado.webp', descripcion: 'Pan rallado para empanar', detalle: 'Paquete', stock: 10, activo: true, department: 'mercado' },
+        { id: 6, nombre: 'Pan rallado', categoria: 'Alimentos y conservas', precio: 450, marca: 'Enepa', imagen: 'https://i.postimg.cc/qvQwHpNJ/pan-rallado.webp', descripcion: 'Pan rallado para empanar', detalle: 'Paquete', stock: 10, activo: true, department: 'mercado' },
         { id: 7, nombre: 'Cartón de huevo', categoria: 'Alimentos y conservas', precio: 3000, marca: 'N/A', imagen: 'https://i.postimg.cc/sDWkwVvv/carton_de_huevo_30_u_precio_3100.png', descripcion: 'Huevos frescos', detalle: '30 unidades', stock: 10, activo: true, department: 'mercado' },
         { id: 8, nombre: 'Leche condensada', categoria: 'Alimentos y conservas', precio: 520, marca: 'N/A', imagen: 'https://i.postimg.cc/tT2XwjtT/leche_condensada.png', descripcion: 'Leche condensada', detalle: '397g', stock: 10, activo: true, department: 'mercado' },
         { id: 9, nombre: 'Harina blanca', categoria: 'Alimentos y conservas', precio: 600, marca: 'N/A', imagen: 'https://i.postimg.cc/3xc2NHFB/harina_blanca1_kg.png', descripcion: 'Harina de trigo', detalle: '1kg', stock: 10, activo: true, department: 'mercado' },
-        { id: 42, nombre: 'Frijoles Negros', categoria: 'Alimentos y conservas', precio: 820, marca: 'Da Vicio', imagen: 'https://i.postimg.cc/wvkcjZNf/frijol_negro.png', descripcion: 'Frijoles negros seleccionados', detalle: 'Paquete', stock: 5, activo: true, department: 'mercado' },
+        { id: 42, nombre: 'Frijoles Negros', categoria: 'Alimentos y conservas', precio: 820, marca: 'Da Vicio', imagen: 'https://i.postimg.cc/wvkcjZNf/frijol_negro.png', descripcion: 'Frijoles negros', detalle: 'Paquete', stock: 5, activo: true, department: 'mercado' },
         { id: 43, nombre: 'Avena en Hojuelas', categoria: 'Alimentos y conservas', precio: 600, marca: 'El Puritano', imagen: 'https://i.postimg.cc/sDHmWkNL/avena.png', descripcion: 'Avena integral', detalle: 'Paquete', stock: 6, activo: true, department: 'mercado' },
-        { id: 48, nombre: 'Atole', categoria: 'Alimentos y conservas', precio: 400, marca: 'N/A', imagen: 'https://i.postimg.cc/fTqCdGPh/atole.png', descripcion: 'Mezcla en polvo para atole', detalle: 'Sobre', stock: 10, activo: true, department: 'mercado' },
-        { id: 54, nombre: 'Aceite', categoria: 'Alimentos y conservas', precio: 990, marca: 'Naz', imagen: 'https://i.postimg.cc/hPZsmk5N/aceite.png', descripcion: 'Aceite de girasol', detalle: '1L', stock: 10, activo: true, department: 'mercado' },
+        { id: 48, nombre: 'Atole', categoria: 'Alimentos y conservas', precio: 400, marca: 'N/A', imagen: 'https://i.postimg.cc/fTqCdGPh/atole.png', descripcion: 'Mezcla en polvo', detalle: 'Sobre', stock: 10, activo: true, department: 'mercado' },
+        { id: 54, nombre: 'Aceite de girasol', categoria: 'Alimentos y conservas', precio: 990, marca: 'Naz', imagen: 'https://i.postimg.cc/hPZsmk5N/aceite.png', descripcion: 'Aceite vegetal', detalle: '1L', stock: 10, activo: true, department: 'mercado' },
         
         // SNACKS Y GOLOSINAS
         { id: 10, nombre: 'Chicoticos Pelly', categoria: 'Snacks y golosinas', precio: 400, marca: 'Pelly', imagen: 'https://i.postimg.cc/1zv2fXjZ/chicoticos_pelly_90_g_precio_400.png', descripcion: 'Snack de maíz', detalle: '90g', stock: 10, activo: true, department: 'mercado' },
@@ -43,7 +43,7 @@ window.catalogo = {
         { id: 56, nombre: 'Jabón de Carbón', categoria: 'Higiene personal', precio: 200, marca: 'N/A', imagen: 'https://i.postimg.cc/Y9xfCZgB/jabon_carbon.png', descripcion: 'Jabón artesanal', detalle: 'Pastilla', stock: 10, activo: true, department: 'mercado' },
         
         // ASEO DEL HOGAR
-        { id: 20, nombre: 'Jabón de Lavar', categoria: 'Aseo del hogar', precio: 250, marca: 'N/A', imagen: 'https://i.postimg.cc/V6YfK6Mz/jabon_de_lavar_precio_250.png', descripcion: 'Jabón para lavar ropa', detalle: 'Pastilla', stock: 10, activo: true, department: 'mercado' },
+        { id: 20, nombre: 'Jabón de Lavar', categoria: 'Aseo del hogar', precio: 250, marca: 'N/A', imagen: 'https://i.postimg.cc/V6YfK6Mz/jabon_de_lavar_precio_250.png', descripcion: 'Jabón para lavar', detalle: 'Pastilla', stock: 10, activo: true, department: 'mercado' },
         { id: 51, nombre: 'Detergente Tid', categoria: 'Aseo del hogar', precio: 630, marca: 'Tid', imagen: 'https://i.postimg.cc/3RhF7YkZ/detergente.png', descripcion: 'Detergente en polvo', detalle: 'Bolsa', stock: 6, activo: true, department: 'mercado' },
         
         // PERFUMES Y DESODORANTES
@@ -75,10 +75,10 @@ window.catalogo = {
         { id: 59, nombre: 'Cerveza Parranda', categoria: 'Bebidas', precio: 250, marca: 'Parranda', imagen: 'https://i.postimg.cc/d31dt1w9/parranda.webp', descripcion: 'Cerveza', detalle: 'Lata', stock: 10, activo: true, department: 'mercado' },
         
         // CONGELADOS
-        { id: 46, nombre: 'Patatas Fritas', categoria: 'Congelados', precio: 1200, marca: 'Vima', imagen: 'https://i.postimg.cc/rs76dmR8/patatas_fritas.png', descripcion: 'Papas prefritas congeladas', detalle: '1kg', stock: 4, activo: true, department: 'mercado' },
-        { id: 47, nombre: 'Nuggets de Pollo', categoria: 'Congelados', precio: 550, marca: 'La Perla', imagen: 'https://i.postimg.cc/KYSnrxDm/nuggets_de_pollo.webp', descripcion: 'Nuggets de pollo', detalle: 'Paquete', stock: 5, activo: true, department: 'mercado' },
-        { id: 50, nombre: 'Croquetas', categoria: 'Congelados', precio: 450, marca: 'N/A', imagen: 'https://i.postimg.cc/br4XGJSy/cdroquetas_sabor_jamon.png', descripcion: 'Croquetas sabor jamón', detalle: 'Bolsa', stock: 10, activo: true, department: 'mercado' },
-        { id: 55, nombre: 'Bocaditos de Pollo', categoria: 'Congelados', precio: 550, marca: 'N/A', imagen: 'https://i.postimg.cc/GpGxZHmd/bocadito_de_pollo.png', descripcion: 'Bocaditos crujientes', detalle: 'Paquete', stock: 10, activo: true, department: 'mercado' },
+        { id: 46, nombre: 'Patatas Fritas', categoria: 'Congelados', precio: 1200, marca: 'Vima', imagen: 'https://i.postimg.cc/rs76dmR8/patatas_fritas.png', descripcion: 'Papas prefritas', detalle: '1kg', stock: 4, activo: true, department: 'mercado' },
+        { id: 47, nombre: 'Nuggets de Pollo', categoria: 'Congelados', precio: 550, marca: 'La Perla', imagen: 'https://i.postimg.cc/KYSnrxDm/nuggets_de_pollo.webp', descripcion: 'Nuggets', detalle: 'Paquete', stock: 5, activo: true, department: 'mercado' },
+        { id: 50, nombre: 'Croquetas', categoria: 'Congelados', precio: 450, marca: 'N/A', imagen: 'https://i.postimg.cc/br4XGJSy/cdroquetas_sabor_jamon.png', descripcion: 'Sabor jamón', detalle: 'Bolsa', stock: 10, activo: true, department: 'mercado' },
+        { id: 55, nombre: 'Bocaditos de Pollo', categoria: 'Congelados', precio: 550, marca: 'N/A', imagen: 'https://i.postimg.cc/GpGxZHmd/bocadito_de_pollo.png', descripcion: 'Crujientes', detalle: 'Paquete', stock: 10, activo: true, department: 'mercado' },
         { id: 60, nombre: 'Lomo de Res', categoria: 'Congelados', precio: 800, marca: 'N/A', imagen: 'https://i.postimg.cc/nh7mLNbw/res.webp', descripcion: 'Corte de res', detalle: '250g', stock: 10, activo: true, department: 'mercado' },
         
         // ELECTRÓNICOS
