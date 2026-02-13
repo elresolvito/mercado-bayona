@@ -2,616 +2,1685 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bodegón Bayona 59 | Combos y Productos en La Habana</title>
-    <meta name="description" content="Tienda online de combos de productos. Compra cavillas de acero, combos de alimentos y productos del mercado. Envíos en La Habana.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>El Resolvito | Tu Tienda a Domicilio en La Habana</title>
+    <meta name="description" content="Encuentra víveres y más en El Resolvito. Haz tu pedido online y recíbelo en La Habana. Compra fácil y rápido por WhatsApp.">
+    <meta name="keywords" content="tienda online habana, mercado habana, entrega a domicilio cuba, mandados habana, el resolvito">
+    <meta name="author" content="El Resolvito">
     
-    <!-- Estilos -->
-    <link rel="stylesheet" href="styles.css">
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json?v=5">
+    <meta name="theme-color" content="#0d3b33">
+    <link rel="apple-touch-icon" href="/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Kaushan+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- OneSignal -->
+    <meta name="onesignal" content="wordpress-plugin"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="El Resolvito">
+    
+    <style>
+        /* ============================================
+           VARIABLES Y ESTILOS BASE
+           ============================================ */
+        :root {
+            --primary: #0d3b33;
+            --primary-dark: #0a2e28;
+            --accent: #c94a37;
+            --accent-dark: #b33e2c;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #64748b;
+            --border-light: #f0f0f0;
+            --border-medium: #e2e8f0;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-md: 0 8px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 12px 24px rgba(13,59,51,0.08);
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-lg: 20px;
+            --radius-xl: 24px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.5;
+        }
+        
+        /* ============================================
+           TARJETAS DE PRODUCTO - ESTILO MERCADO ÚNICO
+           ============================================ */
+        
+        /* Grid principal */
+        .mercado-product-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0.5rem;
+        }
+        
+        /* Tablet: 2 columnas */
+        @media (min-width: 640px) {
+            .mercado-product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.25rem;
+                padding: 1rem;
+            }
+        }
+        
+        /* Desktop: 3 columnas */
+        @media (min-width: 1024px) {
+            .mercado-product-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+            }
+        }
+        
+        /* ========== TARJETA MÓVIL (HORIZONTAL) ========== */
+        .product-card-mobile {
+            display: flex;
+            background: var(--bg-white);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            transition: all 0.25s ease;
+            height: 100%;
+            position: relative;
+        }
+        
+        .product-card-mobile:active {
+            background-color: #fafafa;
+            transform: scale(0.98);
+        }
+        
+        .product-card-mobile-image {
+            width: 100px;
+            flex-shrink: 0;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem;
+        }
+        
+        .product-card-mobile-image img {
+            width: 100%;
+            height: auto;
+            max-height: 80px;
+            object-fit: contain;
+        }
+        
+        .product-card-mobile-content {
+            flex: 1;
+            padding: 0.75rem 0.75rem 0.75rem 0.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-card-mobile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.25rem;
+        }
+        
+        .product-card-mobile-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            line-height: 1.3;
+            margin: 0;
+            padding-right: 0.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex: 1;
+        }
+        
+        .product-card-mobile-price {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+        
+        .product-card-mobile-detail {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .product-card-mobile-market {
+            font-size: 0.65rem;
+            color: var(--text-medium);
+            background: #f1f5f9;
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 30px;
+            margin-bottom: 0.5rem;
+            width: fit-content;
+            font-weight: 500;
+            border: 1px solid var(--border-medium);
+        }
+        
+        /* Selector de cantidad - IGUAL AL DISEÑO */
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0.5rem;
+            margin-top: auto;
+        }
+        
+        .quantity-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: #f1f5f9;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.15s;
+            border: 1px solid var(--border-medium);
+        }
+        
+        .quantity-btn:active {
+            background: #e2e8f0;
+            transform: scale(0.95);
+        }
+        
+        .quantity-value {
+            font-size: 0.875rem;
+            font-weight: 600;
+            min-width: 24px;
+            text-align: center;
+        }
+        
+        /* ========== TARJETA DESKTOP (VERTICAL) ========== */
+        .product-card-desktop {
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+        }
+        
+        .product-card-desktop:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+            border-color: var(--border-medium);
+        }
+        
+        .product-card-desktop-image {
+            background: #ffffff;
+            padding: 1.5rem 1.5rem 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #f8fafc;
+            aspect-ratio: 1 / 1;
+        }
+        
+        .product-card-desktop-image img {
+            width: 100%;
+            height: 100%;
+            max-height: 160px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card-desktop:hover .product-card-desktop-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-card-desktop-content {
+            padding: 1.25rem 1.25rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        
+        .product-card-desktop-market {
+            font-size: 0.7rem;
+            color: var(--text-medium);
+            background: #f8fafc;
+            padding: 0.25rem 0.75rem;
+            border-radius: 30px;
+            display: inline-block;
+            width: fit-content;
+            margin-bottom: 0.75rem;
+            border: 1px solid var(--border-medium);
+            font-weight: 600;
+        }
+        
+        .product-card-desktop-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .product-card-desktop-detail {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+        
+        .product-card-desktop-detail i {
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+        
+        .product-card-desktop-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--border-medium);
+        }
+        
+        .product-card-desktop-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+        
+        .product-card-desktop-add-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            padding: 0.6rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+        
+        .product-card-desktop-add-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+        
+        .product-card-desktop-add-btn i {
+            font-size: 0.875rem;
+        }
+        
+        /* Responsive: Mobile solo móvil, Desktop solo desktop */
+        @media (max-width: 639px) {
+            .product-card-desktop {
+                display: none;
+            }
+        }
+        
+        @media (min-width: 640px) {
+            .product-card-mobile {
+                display: none;
+            }
+        }
+        
+        /* Producto agotado */
+        .product-card.unavailable,
+        .product-card-mobile.unavailable,
+        .product-card-desktop.unavailable {
+            opacity: 0.7;
+            filter: grayscale(70%);
+            position: relative;
+        }
+        
+        .product-card-mobile.unavailable::after,
+        .product-card-desktop.unavailable::after {
+            content: "AGOTADO";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ef4444;
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 30px;
+            z-index: 10;
+            letter-spacing: 0.5px;
+        }
+        
+        /* ============================================
+           MODALES Y COMPONENTES
+           ============================================ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 1rem;
+        }
+        
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 24px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* ============================================
+           ANIMACIONES
+           ============================================ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .product-card-mobile,
+        .product-card-desktop {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        .shake {
+            animation: shake 0.4s ease-in-out;
+        }
+        
+        /* ============================================
+           HEADER Y NAVEGACIÓN
+           ============================================ */
+        #mainHeader {
+            background: var(--primary);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        #mainHeader.scrolled {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            background: rgba(13, 59, 51, 0.98);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* ============================================
+           TOAST Y NOTIFICACIONES
+           ============================================ */
+        #cartToast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--text-dark);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            white-space: nowrap;
+        }
+        
+        #cartToast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        /* ============================================
+           BOTÓN FLOTANTE DEL CARRITO
+           ============================================ */
+        #floatingCartBtn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--primary);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(13, 59, 51, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 100;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        
+        #floatingCartBtn:hover {
+            transform: scale(1.05);
+            background: var(--primary-dark);
+        }
+        
+        #cartCount {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+        }
+        
+        /* ============================================
+           UTILIDADES
+           ============================================ */
+        .font-script {
+            font-family: 'Kaushan Script', cursive;
+        }
+        
+        .hero-image-mask {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            overflow: hidden;
+            box-shadow: 20px 20px 0 rgba(201, 74, 55, 0.1);
+            transition: all 0.5s ease;
+        }
+        
+        .hero-image-mask:hover {
+            border-radius: 50%;
+            box-shadow: 20px 20px 0 rgba(13, 59, 51, 0.1);
+        }
+        
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <a href="#" class="logo">
-                    <div class="logo-icon">🛒</div>
-                    <div class="logo-text">
-                        <span class="logo-main">BODEGÓN</span>
-                        <span class="logo-sub">BAYONA 59</span>
-                    </div>
-                </a>
-                
-                <nav class="nav">
-                    <a href="#inicio" class="nav-link active"><i class="fas fa-home"></i> Inicio</a>
-                    <a href="#combos" class="nav-link"><i class="fas fa-box"></i> Combos</a>
-                    <a href="#construccion" class="nav-link"><i class="fas fa-hammer"></i> Construcción</a>
-                    <a href="#mercado" class="nav-link"><i class="fas fa-store"></i> Mercado</a>
-                    <a href="#contacto" class="nav-link"><i class="fas fa-phone-alt"></i> Contacto</a>
-                </nav>
-                
-                <div class="header-actions">
-                    <button class="btn-cart" id="cartBtn">
-                        <i class="fas fa-shopping-basket"></i>
-                        <span class="cart-count">3</span>
-                    </button>
-                    <button class="btn-menu" id="menuBtn">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
-            </div>
+
+<!-- ============================================
+     HEADER
+     ============================================ -->
+<header id="mainHeader" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+            <a href="#" class="flex items-center gap-3">
+                <img src="https://i.postimg.cc/s2FHrX2Y/logo_el_resolvito.jpg" alt="El Resolvito" class="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover border-2 border-white">
+                <span class="text-white text-xl font-bold hidden sm:block">El Resolvito</span>
+            </a>
         </div>
-    </header>
-
-    <!-- Hero Slider -->
-    <section class="hero-slider" id="inicio">
-        <div class="swiper">
-            <div class="swiper-wrapper">
-                <!-- Slide 1: Mercado Bayona 59 -->
-                <div class="swiper-slide slide-1">
-                    <div class="slide-content">
-                        <span class="slide-badge">¡Nuevo!</span>
-                        <h1 class="slide-title">Mercado <span class="highlight">Bayona 59</span></h1>
-                        <p class="slide-text">Tu tienda de confianza en La Habana. Productos frescos, calidad garantizada y los mejores precios.</p>
-                        <div class="slide-stats">
-                            <div class="stat">
-                                <i class="fas fa-users"></i>
-                                <span>+2000 clientes satisfechos</span>
-                            </div>
-                            <div class="stat">
-                                <i class="fas fa-box-open"></i>
-                                <span>+150 productos disponibles</span>
-                            </div>
-                        </div>
-                        <a href="#mercado" class="btn-slide">Ver Productos <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                    <div class="slide-image">
-                        <div class="image-circle"></div>
-                    </div>
-                </div>
-
-                <!-- Slide 2: Materiales de Construcción -->
-                <div class="swiper-slide slide-2">
-                    <div class="slide-content">
-                        <span class="slide-badge">¡Oferta Especial!</span>
-                        <h1 class="slide-title">Cavillas de <span class="highlight">Acero</span></h1>
-                        <p class="slide-text">Materiales de construcción de primera calidad. Perfectos para tus proyectos.</p>
-                        <div class="slide-features">
-                            <div class="feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Alta resistencia</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Diferentes medidas</span>
-                            </div>
-                            <div class="feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Precios por mayor y menor</span>
-                            </div>
-                        </div>
-                        <a href="#construccion" class="btn-slide">Ver Cavillas <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                    <div class="slide-image">
-                        <div class="image-square"></div>
-                    </div>
-                </div>
-
-                <!-- Slide 3: Combo de Alimentos -->
-                <div class="swiper-slide slide-3">
-                    <div class="slide-content">
-                        <span class="slide-badge">Combo Exclusivo</span>
-                        <h1 class="slide-title">Super <span class="highlight">Combo Familiar</span></h1>
-                        <p class="slide-text">Todo lo necesario para tu hogar en un solo paquete. ¡Ahorra hasta un 25%!</p>
-                        <ul class="combo-list">
-                            <li><i class="fas fa-beer"></i> Cerveza</li>
-                            <li><i class="fas fa-oil-can"></i> Aceite</li>
-                            <li><i class="fas fa-wine-bottle"></i> Refresco</li>
-                            <li><i class="fas fa-cow"></i> Leche Condensada</li>
-                            <li><i class="fas fa-weight"></i> Leche en polvo 1kg</li>
-                            <li><i class="fas fa-drumstick-bite"></i> Salchichas</li>
-                            <li><i class="fas fa-bacon"></i> Jamón</li>
-                            <li><i class="fas fa-drumstick-bite"></i> Pollo 10lb</li>
-                        </ul>
-                        <div class="price-tag">
-                            <span class="old-price">$150.00</span>
-                            <span class="current-price">$112.50</span>
-                        </div>
-                        <a href="#combos" class="btn-slide">Comprar Ahora <i class="fas fa-shopping-cart"></i></a>
-                    </div>
-                    <div class="slide-image">
-                        <div class="image-combo"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Controles del slider -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
-        </div>
-    </section>
-
-    <!-- Sección Combos Destacados -->
-    <section class="combos-section" id="combos">
-        <div class="container">
-            <div class="section-header">
-                <h2>Nuestros <span class="highlight">Combos</span> Destacados</h2>
-                <p>Paquetes especiales con todo lo que necesitas y al mejor precio</p>
-            </div>
-            
-            <div class="combos-grid">
-                <!-- Combo 1 -->
-                <div class="combo-card featured">
-                    <div class="combo-badge">Más Vendido</div>
-                    <div class="combo-header">
-                        <h3>Combo Familiar Premium</h3>
-                        <p class="combo-desc">Perfecto para familias de 4-5 personas</p>
-                    </div>
-                    <div class="combo-content">
-                        <ul class="combo-items">
-                            <li><i class="fas fa-check"></i> 2x Cerveza 355ml</li>
-                            <li><i class="fas fa-check"></i> Aceite Vegetal 1L</li>
-                            <li><i class="fas fa-check"></i> 6x Refresco en lata</li>
-                            <li><i class="fas fa-check"></i> Leche Condensada 395g</li>
-                            <li><i class="fas fa-check"></i> Leche en polvo 1kg</li>
-                            <li><i class="fas fa-check"></i> Salchichas 400g</li>
-                            <li><i class="fas fa-check"></i> Jamón 250g</li>
-                            <li><i class="fas fa-check"></i> Pollo entero 10lb</li>
-                        </ul>
-                        <div class="combo-price">
-                            <div class="price-info">
-                                <span class="price-old">$150.00</span>
-                                <span class="price-current">$112.50</span>
-                                <span class="price-save">Ahorras $37.50</span>
-                            </div>
-                            <button class="btn-combo">
-                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Combo 2 -->
-                <div class="combo-card">
-                    <div class="combo-badge">Nuevo</div>
-                    <div class="combo-header">
-                        <h3>Combo Básico Hogar</h3>
-                        <p class="combo-desc">Esenciales para el día a día</p>
-                    </div>
-                    <div class="combo-content">
-                        <ul class="combo-items">
-                            <li><i class="fas fa-check"></i> Aceite Vegetal 1L</li>
-                            <li><i class="fas fa-check"></i> 3x Refresco en lata</li>
-                            <li><i class="fas fa-check"></i> Leche Condensada 395g</li>
-                            <li><i class="fas fa-check"></i> Leche en polvo 500g</li>
-                            <li><i class="fas fa-check"></i> Salchichas 250g</li>
-                            <li><i class="fas fa-check"></i> Pollo 5lb</li>
-                        </ul>
-                        <div class="combo-price">
-                            <div class="price-info">
-                                <span class="price-old">$75.00</span>
-                                <span class="price-current">$56.25</span>
-                                <span class="price-save">Ahorras $18.75</span>
-                            </div>
-                            <button class="btn-combo">
-                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Combo 3 -->
-                <div class="combo-card">
-                    <div class="combo-badge">Oferta</div>
-                    <div class="combo-header">
-                        <h3>Combo Carnes Selectas</h3>
-                        <p class="combo-desc">Para los amantes de la buena carne</p>
-                    </div>
-                    <div class="combo-content">
-                        <ul class="combo-items">
-                            <li><i class="fas fa-check"></i> Pollo entero 10lb</li>
-                            <li><i class="fas fa-check"></i> Carne de res 3lb</li>
-                            <li><i class="fas fa-check"></i> Cerdo 2lb</li>
-                            <li><i class="fas fa-check"></i> Salchichas 500g</li>
-                            <li><i class="fas fa-check"></i> Jamón 500g</li>
-                            <li><i class="fas fa-check"></i> Tocino 250g</li>
-                        </ul>
-                        <div class="combo-price">
-                            <div class="price-info">
-                                <span class="price-old">$120.00</span>
-                                <span class="price-current">$90.00</span>
-                                <span class="price-save">Ahorras $30.00</span>
-                            </div>
-                            <button class="btn-combo">
-                                <i class="fas fa-cart-plus"></i> Agregar al Carrito
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección Construcción -->
-    <section class="construction-section" id="construccion">
-        <div class="container">
-            <div class="section-header">
-                <h2>Materiales de <span class="highlight">Construcción</span></h2>
-                <p>Calidad y resistencia para tus proyectos</p>
-            </div>
-            
-            <div class="construction-content">
-                <div class="construction-info">
-                    <h3>Cavillas de Acero</h3>
-                    <p class="construction-desc">
-                        Disponemos de cavillas de acero de alta resistencia en diferentes medidas. 
-                        Perfectas para trabajos de construcción, reparaciones y proyectos DIY.
-                    </p>
-                    
-                    <div class="specs-grid">
-                        <div class="spec">
-                            <i class="fas fa-ruler"></i>
-                            <div>
-                                <h4>Medidas Disponibles</h4>
-                                <p>1/4", 3/8", 1/2", 5/8", 3/4"</p>
-                            </div>
-                        </div>
-                        <div class="spec">
-                            <i class="fas fa-weight-hanging"></i>
-                            <div>
-                                <h4>Resistencia</h4>
-                                <p>Grado A36 (250 MPa)</p>
-                            </div>
-                        </div>
-                        <div class="spec">
-                            <i class="fas fa-boxes"></i>
-                            <div>
-                                <h4>Presentación</h4>
-                                <p>Por unidad o en packs</p>
-                            </div>
-                        </div>
-                        <div class="spec">
-                            <i class="fas fa-truck"></i>
-                            <div>
-                                <h4>Envío</h4>
-                                <p>Disponible en toda La Habana</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="pricing-info">
-                        <div class="price-card">
-                            <h4>Pack Básico</h4>
-                            <p class="price">$25.00</p>
-                            <p>10 unidades de 1/2"</p>
-                            <button class="btn-buy">Comprar</button>
-                        </div>
-                        <div class="price-card featured">
-                            <h4>Pack Profesional</h4>
-                            <p class="price">$45.00</p>
-                            <p>25 unidades variadas</p>
-                            <button class="btn-buy">Comprar</button>
-                        </div>
-                        <div class="price-card">
-                            <h4>Pack Mayorista</h4>
-                            <p class="price">$80.00</p>
-                            <p>50 unidades + descuento</p>
-                            <button class="btn-buy">Comprar</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="construction-image">
-                    <div class="image-container">
-                        <div class="bolt-icon">🔩</div>
-                        <div class="bolt-icon">⚙️</div>
-                        <div class="bolt-icon">🛠️</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección Mercado -->
-    <section class="market-section" id="mercado">
-        <div class="container">
-            <div class="section-header">
-                <h2>Productos del <span class="highlight">Mercado</span></h2>
-                <p>Selección de los mejores productos para tu hogar</p>
-            </div>
-            
-            <div class="categories">
-                <button class="category-btn active">Todos</button>
-                <button class="category-btn">Lácteos</button>
-                <button class="category-btn">Carnes</button>
-                <button class="category-btn">Bebidas</button>
-                <button class="category-btn">Enlatados</button>
-                <button class="category-btn">Otros</button>
-            </div>
-            
-            <div class="products-grid">
-                <!-- Productos se cargarán dinámicamente -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <i class="fas fa-beer"></i>
-                    </div>
-                    <h3>Cerveza Nacional</h3>
-                    <p class="product-desc">355ml - Pack de 6</p>
-                    <div class="product-price">
-                        <span class="price">$12.00</span>
-                        <button class="btn-add"><i class="fas fa-plus"></i></button>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <div class="product-img">
-                        <i class="fas fa-oil-can"></i>
-                    </div>
-                    <h3>Aceite Vegetal</h3>
-                    <p class="product-desc">1 Litro - Soja</p>
-                    <div class="product-price">
-                        <span class="price">$4.50</span>
-                        <button class="btn-add"><i class="fas fa-plus"></i></button>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <div class="product-img">
-                        <i class="fas fa-wine-bottle"></i>
-                    </div>
-                    <h3>Refresco Cola</h3>
-                    <p class="product-desc">330ml - Pack de 12</p>
-                    <div class="product-price">
-                        <span class="price">$8.00</span>
-                        <button class="btn-add"><i class="fas fa-plus"></i></button>
-                    </div>
-                </div>
-                
-                <!-- Más productos... -->
-            </div>
-            
-            <div class="section-footer">
-                <a href="#" class="btn-view-all">Ver Todos los Productos <i class="fas fa-arrow-right"></i></a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección Contacto -->
-    <section class="contact-section" id="contacto">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h2>¿Necesitas Ayuda?</h2>
-                    <p class="contact-desc">Contáctanos para asesoría personalizada y pedidos especiales</p>
-                    
-                    <div class="contact-methods">
-                        <div class="method">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <h4>Ubicación</h4>
-                                <p>Calle Bayona #59, La Habana, Cuba</p>
-                            </div>
-                        </div>
-                        <div class="method">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h4>Teléfono</h4>
-                                <p>+53 123 456 78</p>
-                            </div>
-                        </div>
-                        <div class="method">
-                            <i class="fab fa-whatsapp"></i>
-                            <div>
-                                <h4>WhatsApp</h4>
-                                <p>+53 987 654 32</p>
-                            </div>
-                        </div>
-                        <div class="method">
-                            <i class="fas fa-clock"></i>
-                            <div>
-                                <h4>Horario</h4>
-                                <p>Lun-Vie: 9am-6pm<br>Sáb: 9am-2pm</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="whatsapp-cta">
-                        <a href="https://wa.me/5398765432" class="btn-whatsapp" target="_blank">
-                            <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <h3>Envíanos un Mensaje</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" placeholder="Tu Nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" placeholder="Teléfono" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea placeholder="Tu Mensaje..." rows="4" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-submit">
-                            <i class="fas fa-paper-plane"></i> Enviar Mensaje
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Carrito Flotante -->
-    <div class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
-            <h3><i class="fas fa-shopping-basket"></i> Tu Carrito</h3>
-            <button class="btn-close" id="closeCart">&times;</button>
-        </div>
-        <div class="cart-items">
-            <div class="cart-empty">
-                <i class="fas fa-shopping-basket"></i>
-                <p>Tu carrito está vacío</p>
-                <a href="#combos" class="btn-shop">Ver Combos</a>
-            </div>
-        </div>
-        <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total:</span>
-                <span class="total-amount">$0.00</span>
-            </div>
-            <button class="btn-checkout">Finalizar Compra</button>
+        
+        <nav class="hidden md:flex items-center gap-6 text-white font-semibold">
+            <a href="#mercado" class="hover:text-[var(--accent)] transition-colors">Mercado</a>
+            <a href="#como-comprar" class="hover:text-[var(--accent)] transition-colors">Ayuda</a>
+            <a href="#contacto" class="hover:text-[var(--accent)] transition-colors">Contacto</a>
+        </nav>
+        
+        <div id="estado-conexion" class="hidden md:flex items-center gap-2 text-xs px-3 py-1.5 rounded-full bg-white/10">
+            <span class="inline-block w-2 h-2 rounded-full bg-green-500"></span>
+            <span class="text-white">Online</span>
         </div>
     </div>
+</header>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <div class="logo">
-                        <div class="logo-icon">🛒</div>
-                        <div class="logo-text">
-                            <span class="logo-main">BODEGÓN</span>
-                            <span class="logo-sub">BAYONA 59</span>
+<!-- ============================================
+     MENÚ MÓVIL
+     ============================================ -->
+<div id="mobile-menu" class="fixed top-0 left-0 h-full w-64 bg-[var(--primary)] z-50 shadow-xl transform -translate-x-full transition-transform duration-300 md:hidden">
+    <div class="p-6">
+        <div class="flex justify-between items-center mb-8">
+            <div class="flex items-center gap-2">
+                <img src="https://i.postimg.cc/s2FHrX2Y/logo_el_resolvito.jpg" alt="El Resolvito" class="h-12 w-12 rounded-full object-cover border-2 border-white">
+                <span class="text-white font-bold">El Resolvito</span>
+            </div>
+            <button id="close-mobile-menu" class="text-white">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col space-y-4">
+            <a href="#mercado" class="text-white font-semibold py-2 px-4 rounded-lg hover:bg-white/10 transition mobile-nav-link">
+                <i class="fas fa-store mr-3"></i> Mercado
+            </a>
+            <a href="#como-comprar" class="text-white font-semibold py-2 px-4 rounded-lg hover:bg-white/10 transition mobile-nav-link">
+                <i class="fas fa-question-circle mr-3"></i> ¿Cómo Comprar?
+            </a>
+            <a href="#contacto" class="text-white font-semibold py-2 px-4 rounded-lg hover:bg-white/10 transition mobile-nav-link">
+                <i class="fas fa-envelope mr-3"></i> Contacto
+            </a>
+        </nav>
+    </div>
+</div>
+<div id="mobile-backdrop" class="fixed inset-0 bg-black/50 z-40 hidden"></div>
+
+<!-- ============================================
+     HERO SECTION
+     ============================================ -->
+<section class="relative pt-28 pb-12 md:pt-36 md:pb-20 bg-white overflow-hidden">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
+            <div class="w-full md:w-1/2 text-center md:text-left">
+                <span class="inline-block py-1 px-3 rounded-full bg-blue-50 text-[var(--primary)] text-xs font-bold tracking-wide mb-4 border border-blue-100">
+                    🚚 ENVÍOS EN LA HABANA VIEJA
+                </span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[var(--text-dark)] leading-tight mb-4">
+                    Tus compras <br>
+                    <span class="font-script text-[var(--accent)] text-5xl md:text-6xl lg:text-7xl block mt-2 transform -rotate-2">
+                        a un solo clic
+                    </span>
+                </h1>
+                <p class="text-gray-500 text-lg md:text-xl mb-8 max-w-lg mx-auto md:mx-0">
+                    Olvídate de las colas. Selecciona tus productos desde el móvil y recíbelos en la puerta de tu casa en La Habana Vieja.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#mercado" class="px-8 py-4 bg-[var(--primary)] text-white font-bold rounded-full shadow-lg hover:bg-[var(--primary-dark)] transition-all transform hover:scale-105 flex items-center justify-center gap-2">
+                        <i class="fas fa-shopping-cart"></i> Comprar Ahora
+                    </a>
+                    <a href="#nuestras-ventajas" class="px-8 py-4 bg-white text-[var(--primary)] font-bold rounded-full border-2 border-gray-100 hover:border-[var(--primary)] transition-all">
+                        Ver Ofertas
+                    </a>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 relative flex justify-center">
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-50 rounded-full opacity-50"></div>
+                <div class="relative z-10 w-full max-w-[400px] md:max-w-[500px] aspect-square">
+                    <img src="https://i.postimg.cc/rsCKV7LZ/1755367982611.jpg" alt="Repartidor El Resolvito" class="hero-image-mask w-full h-full object-cover object-center">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     VENTAJAS
+     ============================================ -->
+<section id="nuestras-ventajas" class="py-6 md:py-10 bg-white border-b border-gray-100">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
+            <div class="flex flex-col items-center text-center p-3 rounded-lg hover:bg-gray-50 transition">
+                <i class="fas fa-clock text-[var(--primary)] text-2xl md:text-3xl mb-2"></i>
+                <h3 class="text-sm md:text-lg font-bold">Ahorra Tiempo</h3>
+                <p class="hidden md:block text-xs text-[var(--text-light)]">Dedica tu tiempo a lo que importa.</p>
+            </div>
+            <div class="flex flex-col items-center text-center p-3 rounded-lg hover:bg-gray-50 transition">
+                <i class="fas fa-home text-[var(--primary)] text-2xl md:text-3xl mb-2"></i>
+                <h3 class="text-sm md:text-lg font-bold">Compra Cómoda</h3>
+                <p class="hidden md:block text-xs text-[var(--text-light)]">Selecciona desde casa.</p>
+            </div>
+            <div class="flex flex-col items-center text-center p-3 rounded-lg hover:bg-gray-50 transition">
+                <i class="fas fa-smile text-[var(--primary)] text-2xl md:text-3xl mb-2"></i>
+                <h3 class="text-sm md:text-lg font-bold">Sin Estrés</h3>
+                <p class="hidden md:block text-xs text-[var(--text-light)]">Proceso tranquilo y organizado.</p>
+            </div>
+            <div class="flex flex-col items-center text-center p-3 rounded-lg hover:bg-gray-50 transition">
+                <i class="fas fa-shield-alt text-[var(--primary)] text-2xl md:text-3xl mb-2"></i>
+                <h3 class="text-sm md:text-lg font-bold">Seguridad</h3>
+                <p class="hidden md:block text-xs text-[var(--text-light)]">Confirmación por WhatsApp.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     MERCADO - PRODUCTOS
+     ============================================ -->
+<section id="mercado" class="py-12 lg:py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-8">
+            <h2 id="sectionTitle" class="text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--text-dark)]">
+                🛒 Mercado y Víveres
+            </h2>
+            <p class="mt-2 text-[var(--text-medium)]">Selecciona una categoría para ver los productos</p>
+        </div>
+        
+        <!-- Pestañas de departamentos -->
+        <div id="tabsContainer" class="sticky top-[70px] z-30 bg-gray-50 py-3 shadow-sm rounded-b-xl mb-6">
+            <div class="container mx-auto px-2">
+                <div class="grid grid-cols-2 md:flex md:justify-center gap-2">
+                    <button onclick="switchDepartment('mercado')" id="tab-mercado" 
+                            class="department-tab active flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-bold text-sm transition-all bg-[var(--primary)] text-white">
+                        <i class="fas fa-shopping-basket"></i> Mercado
+                    </button>
+                    <button onclick="switchDepartment('ropa')" id="tab-ropa"
+                            class="department-tab flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-bold text-sm transition-all bg-white text-gray-600 border border-gray-200">
+                        <i class="fas fa-tshirt"></i> Ropa
+                    </button>
+                    <button onclick="switchDepartment('electro')" id="tab-electro"
+                            class="department-tab col-span-2 md:col-span-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-bold text-sm transition-all bg-white text-gray-600 border border-gray-200">
+                        <i class="fas fa-tv"></i> Electrodomésticos
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Buscador -->
+        <div class="container mx-auto px-2 mt-4 mb-6">
+            <div class="relative">
+                <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                <input id="globalSearchInput" type="text" placeholder="Buscar producto..." 
+                       class="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent transition text-base bg-white shadow-sm">
+            </div>
+        </div>
+        
+        <!-- Filtros de categoría -->
+        <div id="mercadoCategoryFilters" class="flex flex-wrap justify-center gap-2 mb-8"></div>
+        
+        <!-- Grid de productos -->
+        <div id="mercadoProductGrid" class="mercado-product-grid"></div>
+        
+        <!-- Mensaje sin resultados -->
+        <p id="mercadoNoResultsMessage" class="hidden text-center text-lg text-[var(--text-medium)] mt-12 py-12">
+            <i class="fas fa-search text-4xl text-gray-300 mb-4 block"></i>
+            No se encontraron productos en esta sección
+        </p>
+    </div>
+</section>
+
+<!-- ============================================
+     CÓMO COMPRAR
+     ============================================ -->
+<section id="como-comprar" class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--text-dark)]">
+                ❓ Dudas y Guía de Compra
+            </h2>
+            <p class="mt-2 text-[var(--text-medium)]">Todo lo que necesitas saber, en un solo lugar</p>
+        </div>
+        
+        <div class="max-w-3xl mx-auto">
+            <div class="border border-gray-200 rounded-xl overflow-hidden mb-4">
+                <button onclick="toggleAccordion('faq-1')" class="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 flex justify-between items-center transition">
+                    <span class="font-bold text-[var(--primary)] flex items-center gap-3">
+                        <i class="fas fa-truck"></i>
+                        ¿Cuánto cuesta el envío?
+                    </span>
+                    <i id="icon-faq-1" class="fas fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                </button>
+                <div id="content-faq-1" class="hidden px-6 py-4 bg-white border-t border-gray-100">
+                    <p class="text-[var(--text-medium)]">
+                        🏪 <strong>Habana Vieja:</strong> Precio final con entrega incluida<br>
+                        🚚 <strong>Otros municipios:</strong> Tarifa a convenir por WhatsApp
+                    </p>
+                </div>
+            </div>
+            
+            <div class="border border-gray-200 rounded-xl overflow-hidden mb-4">
+                <button onclick="toggleAccordion('faq-2')" class="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 flex justify-between items-center transition">
+                    <span class="font-bold text-[var(--primary)] flex items-center gap-3">
+                        <i class="fas fa-clock"></i>
+                        ¿Cuánto tarda la entrega?
+                    </span>
+                    <i id="icon-faq-2" class="fas fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                </button>
+                <div id="content-faq-2" class="hidden px-6 py-4 bg-white border-t border-gray-100">
+                    <p class="text-[var(--text-medium)]">
+                        Las entregas en Habana Vieja se realizan el mismo día o al día siguiente. Confirmamos por WhatsApp.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="border border-gray-200 rounded-xl overflow-hidden">
+                <button onclick="toggleAccordion('faq-3')" class="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 flex justify-between items-center transition">
+                    <span class="font-bold text-[var(--primary)] flex items-center gap-3">
+                        <i class="fas fa-credit-card"></i>
+                        ¿Cómo puedo pagar?
+                    </span>
+                    <i id="icon-faq-3" class="fas fa-chevron-down text-gray-500 transition-transform duration-300"></i>
+                </button>
+                <div id="content-faq-3" class="hidden px-6 py-4 bg-white border-t border-gray-100">
+                    <p class="text-[var(--text-medium)]">
+                        Aceptamos efectivo (en CUP) y transferencia bancaria.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     CONTACTO
+     ============================================ -->
+<section id="contacto" class="py-12 lg:py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--text-dark)]">
+                📱 Únete a Nuestro Canal
+            </h2>
+            <p class="mt-2 text-[var(--text-medium)]">Sé el primero en enterarte de nuevos productos y promociones</p>
+        </div>
+        
+        <div class="max-w-lg mx-auto bg-white p-8 rounded-2xl shadow-lg text-center">
+            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fab fa-whatsapp text-4xl text-green-600"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Canal de WhatsApp</h3>
+            <p class="text-[var(--text-medium)] mb-6">Solo administradores, cero spam, solo información útil</p>
+            
+            <div class="bg-gradient-to-r from-blue-50 to-green-50 p-4 rounded-xl mb-6">
+                <p class="text-sm text-gray-600 mb-1">Comunidad activa</p>
+                <p class="text-3xl font-bold text-[var(--primary)]" id="communityCounter">0</p>
+                <p class="text-xs text-gray-500 mt-1">personas ya confían en El Resolvito</p>
+            </div>
+            
+            <a href="#" id="contactWhatsappBtn" class="inline-block bg-green-500 text-white font-bold py-3 px-8 rounded-full hover:bg-green-600 transition-all transform hover:scale-105 shadow-lg">
+                <i class="fab fa-whatsapp mr-2"></i> Unirse al Canal
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="bg-[var(--text-dark)] text-white py-8">
+    <div class="container mx-auto px-4 text-center">
+        <div class="flex justify-center gap-6 mb-6">
+            <a href="https://wa.me/5356382909" target="_blank" class="text-gray-400 hover:text-white transition-transform hover:scale-110">
+                <i class="fab fa-whatsapp text-2xl"></i>
+            </a>
+        </div>
+        
+        <div class="mb-6">
+            <div class="inline-flex items-center gap-2 bg-gray-800 px-4 py-2 rounded-full">
+                <i class="fas fa-eye text-green-400"></i>
+                <span class="text-sm text-gray-300">
+                    <span id="footerCounter">0</span> visitas esta semana
+                </span>
+            </div>
+        </div>
+        
+        <p class="text-sm text-gray-400">
+            © 2024 El Resolvito. Todos los derechos reservados.
+        </p>
+        <p class="text-xs text-gray-500 mt-2">
+            <span id="simpleCounter">0</span> visitas hoy
+        </p>
+    </div>
+</footer>
+
+<!-- ============================================
+     MODALES
+     ============================================ -->
+
+<!-- Modal del Carrito -->
+<div id="cartModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="p-6 border-b flex justify-between items-center">
+            <h3 class="text-xl font-bold text-[var(--text-dark)]">
+                <i class="fas fa-shopping-cart mr-2 text-[var(--primary)]"></i>
+                Tu Carrito
+            </h3>
+            <button id="closeCartModal" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+        
+        <div id="cartItems" class="p-6 max-h-[400px] overflow-y-auto">
+            <p class="text-center text-[var(--text-medium)]">Tu carrito está vacío</p>
+        </div>
+        
+        <div class="p-6 border-t">
+            <div class="flex justify-between items-center mb-4">
+                <span class="font-bold">Total:</span>
+                <span id="cartTotal" class="text-xl font-bold text-[var(--primary)]">$0</span>
+            </div>
+            <button id="sendWhatsAppOrder" class="w-full bg-green-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-600 transition disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                <i class="fab fa-whatsapp mr-2"></i> Enviar Pedido por WhatsApp
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Confirmación -->
+<div id="confirmationModal" class="modal-overlay">
+    <div class="modal-content max-w-md p-8 text-center">
+        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-check text-3xl text-green-600"></i>
+        </div>
+        <h3 class="text-2xl font-bold text-[var(--text-dark)] mb-2">¡Pedido Confirmado!</h3>
+        <p class="text-[var(--text-medium)] mb-6">Tu pedido ha sido enviado. Te contactaremos pronto.</p>
+        <button id="closeConfirmationModal" class="bg-[var(--primary)] text-white font-bold py-3 px-8 rounded-lg hover:bg-[var(--primary-dark)] transition">
+            Continuar Comprando
+        </button>
+    </div>
+</div>
+
+<!-- ============================================
+     BOTONES FLOTANTES
+     ============================================ -->
+
+<!-- Carrito flotante -->
+<button id="floatingCartBtn">
+    <div class="relative">
+        <i class="fas fa-shopping-cart text-xl"></i>
+        <span id="cartCount">0</span>
+    </div>
+    <span id="floatingCartTotal" class="font-bold">$0</span>
+</button>
+
+<!-- Toast notification -->
+<div id="cartToast">
+    <p id="cartToastMessage">Producto añadido al carrito</p>
+</div>
+
+<!-- ============================================
+     SCRIPTS
+     ============================================ -->
+
+<!-- Catálogo de productos -->
+<script src="catalogo.js"></script>
+
+<!-- Script principal -->
+<script>
+    // ============================================
+    // VARIABLES GLOBALES
+    // ============================================
+    let products = [];
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let currentDepartment = 'mercado';
+    let toastTimeout;
+    
+    // Elementos del DOM
+    const cartModal = document.getElementById('cartModal');
+    const confirmationModal = document.getElementById('confirmationModal');
+    const floatingCartBtn = document.getElementById('floatingCartBtn');
+    const closeCartModalBtn = document.getElementById('closeCartModal');
+    const closeConfirmationModalBtn = document.getElementById('closeConfirmationModal');
+    const sendWhatsAppOrder = document.getElementById('sendWhatsAppOrder');
+    const contactWhatsappBtn = document.getElementById('contactWhatsappBtn');
+    const mobileMenuBtn = document.getElementById('mobile-menu-button');
+    const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
+    const mobileBackdrop = document.getElementById('mobile-backdrop');
+    
+    // Constantes de envío
+    const SHIPPING_RANGES = [
+        { max: 2000, fee: 200, discount: "0%" },
+        { max: 5000, fee: 150, discount: "25%" },
+        { max: Infinity, fee: 100, discount: "50%" }
+    ];
+    const SERVICE_FEE_PERCENTAGE = 0.08;
+    const MINIMUM_PROFIT = 300;
+    const MIN_ORDER_THRESHOLD = 500;
+    const TRAMO_1_MAX = 3000;
+    
+    // ============================================
+    // INICIALIZACIÓN
+    // ============================================
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('🚀 Inicializando El Resolvito...');
+        
+        // 1. Cargar productos desde catálogo
+        if (window.catalogo && window.catalogo.productos) {
+            products = window.catalogo.productos;
+            products.sort((a, b) => (a.categoria || a.category)?.localeCompare(b.categoria || b.category) || 0);
+            console.log(`✅ ${products.length} productos cargados desde catálogo.js`);
+        } else {
+            console.warn('⚠️ No se encontró catálogo.js, usando productos de ejemplo');
+            products = getProductosEjemplo();
+        }
+        
+        // 2. Configurar la tienda
+        setupStore();
+        
+        // 3. Inicializar UI
+        updateCartUI();
+        updateAllCounters();
+        
+        // 4. Configurar event listeners
+        setupEventListeners();
+        
+        // 5. Mostrar callout después de 20 segundos
+        setTimeout(() => {
+            if (!sessionStorage.getItem('floatingCalloutClosed')) {
+                showFloatingCallout();
+            }
+        }, 20000);
+    });
+    
+    // ============================================
+    // FUNCIONES DE PRODUCTOS
+    // ============================================
+    
+    function setupStore() {
+        renderCategoryFilters();
+        filterAndRenderProducts();
+    }
+    
+    function renderCategoryFilters() {
+        const filtersContainer = document.getElementById('mercadoCategoryFilters');
+        if (!filtersContainer) return;
+        
+        const productsForSection = products.filter(p => p.department === 'mercado' || !p.department);
+        const categories = ['all', ...new Set(productsForSection.map(p => p.categoria || p.category || 'General').filter(Boolean))];
+        
+        filtersContainer.innerHTML = categories.map(cat => 
+            `<button class="category-filter px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                cat === 'all' ? 'bg-[var(--primary)] text-white' : 'bg-white text-gray-600 border border-gray-200 hover:border-[var(--primary)]'
+            }" data-category="${cat}">
+                ${cat === 'all' ? 'Todos' : cat}
+            </button>`
+        ).join('');
+        
+        filtersContainer.querySelectorAll('.category-filter').forEach(btn => {
+            btn.addEventListener('click', function() {
+                filtersContainer.querySelectorAll('.category-filter').forEach(b => {
+                    b.classList.remove('bg-[var(--primary)]', 'text-white');
+                    b.classList.add('bg-white', 'text-gray-600', 'border', 'border-gray-200');
+                });
+                this.classList.remove('bg-white', 'text-gray-600', 'border', 'border-gray-200');
+                this.classList.add('bg-[var(--primary)]', 'text-white');
+                filterAndRenderProducts();
+            });
+        });
+    }
+    
+    function filterAndRenderProducts() {
+        const searchTerm = document.getElementById('globalSearchInput')?.value.toLowerCase() || '';
+        const activeCategory = document.querySelector('.category-filter.bg-\\[var\\(--primary\\)\\]')?.dataset.category || 'all';
+        
+        let filtered = products.filter(p => p.department === 'mercado' || !p.department);
+        
+        // Filtrar por categoría
+        if (activeCategory !== 'all') {
+            filtered = filtered.filter(p => (p.categoria || p.category) === activeCategory);
+        }
+        
+        // Filtrar por búsqueda
+        if (searchTerm) {
+            filtered = filtered.filter(p => 
+                (p.nombre || p.name || '').toLowerCase().includes(searchTerm) ||
+                (p.descripcion || p.description || '').toLowerCase().includes(searchTerm) ||
+                (p.categoria || p.category || '').toLowerCase().includes(searchTerm)
+            );
+        }
+        
+        renderProducts(filtered);
+    }
+    
+    // ============================================
+    // RENDER DE PRODUCTOS - ESTILO MERCADO ÚNICO
+    // ============================================
+    function renderProducts(productsToRender) {
+        const productGrid = document.getElementById('mercadoProductGrid');
+        const noResultsMessage = document.getElementById('mercadoNoResultsMessage');
+        
+        if (!productGrid) return;
+        
+        if (productsToRender.length === 0) {
+            productGrid.innerHTML = '';
+            if (noResultsMessage) noResultsMessage.classList.remove('hidden');
+            return;
+        }
+        
+        if (noResultsMessage) noResultsMessage.classList.add('hidden');
+        
+        productGrid.className = 'mercado-product-grid';
+        const isMobile = window.innerWidth < 640;
+        
+        let html = '';
+        
+        productsToRender.forEach((product, index) => {
+            const isUnavailable = product.stock === 0 || product.stock === "0" || product.activo === false;
+            const disabledClass = isUnavailable ? 'unavailable' : '';
+            const marketName = 'Mercado Único';
+            
+            // Obtener nombre, precio, etc.
+            const name = product.nombre || product.name || 'Producto';
+            const price = product.precio || product.price || 0;
+            const image = product.imagen || product.image || 'https://via.placeholder.com/200x200?text=No+Image';
+            const detail = product.detalle || product.specificDetails || product.weight ? `${product.weight}g` : '';
+            const productId = product.id || index + 1;
+            
+            const formattedPrice = price.toLocaleString('es-CU', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+            
+            // VERSIÓN MÓVIL
+            if (isMobile) {
+                html += `
+                <div class="product-card-mobile ${disabledClass}" data-product-id="${productId}">
+                    <div class="product-card-mobile-image">
+                        <img src="${image}" alt="${name}" loading="lazy" onerror="this.src='https://via.placeholder.com/80x80?text=No+Image'">
+                    </div>
+                    <div class="product-card-mobile-content">
+                        <div class="product-card-mobile-header">
+                            <h3 class="product-card-mobile-title">${name}</h3>
+                            <span class="product-card-mobile-price">$${formattedPrice}</span>
+                        </div>
+                        
+                        ${detail ? `
+                        <div class="product-card-mobile-detail">
+                            <i class="fas fa-box"></i> ${detail}
+                        </div>` : ''}
+                        
+                        <span class="product-card-mobile-market">
+                            <i class="fas fa-store"></i> ${marketName}
+                        </span>
+                        
+                        ${!isUnavailable ? `
+                        <div class="quantity-selector" onclick="event.stopPropagation()">
+                            <button class="quantity-btn" onclick="decreaseQuantity(${productId}, event)">−</button>
+                            <span class="quantity-value" id="qty-${productId}">1</span>
+                            <button class="quantity-btn" onclick="increaseQuantity(${productId}, event)">+</button>
+                            <span class="text-[var(--primary)] text-xs font-semibold ml-auto cursor-pointer" onclick="addToCart(${productId}, event)">
+                                <i class="fas fa-plus-circle"></i> Añadir
+                            </span>
+                        </div>
+                        ` : ''}
+                    </div>
+                </div>
+                `;
+            } 
+            
+            // VERSIÓN DESKTOP
+            else {
+                html += `
+                <div class="product-card-desktop ${disabledClass}" data-product-id="${productId}">
+                    <div class="product-card-desktop-image">
+                        <img src="${image}" alt="${name}" loading="lazy" onerror="this.src='https://via.placeholder.com/200x200?text=No+Image'">
+                    </div>
+                    <div class="product-card-desktop-content">
+                        <span class="product-card-desktop-market">
+                            <i class="fas fa-store"></i> ${marketName}
+                        </span>
+                        
+                        <h3 class="product-card-desktop-title">${name}</h3>
+                        
+                        ${detail ? `
+                        <div class="product-card-desktop-detail">
+                            <i class="fas fa-box"></i> ${detail}
+                        </div>` : ''}
+                        
+                        ${product.descripcion || product.description ? `
+                        <p class="text-xs text-gray-500 mb-3 line-clamp-2">
+                            ${product.descripcion || product.description}
+                        </p>
+                        ` : ''}
+                        
+                        <div class="product-card-desktop-price-row">
+                            <span class="product-card-desktop-price">$${formattedPrice}</span>
+                            
+                            ${!isUnavailable ? `
+                            <button class="product-card-desktop-add-btn" onclick="addToCart(${productId}, event, 1)">
+                                <i class="fas fa-cart-plus"></i> Añadir
+                            </button>
+                            ` : `
+                            <span class="bg-red-500 text-white px-4 py-2 rounded-full text-xs font-bold">AGOTADO</span>
+                            `}
                         </div>
                     </div>
-                    <p class="footer-desc">
-                        Tu tienda de confianza en La Habana. Combos especiales, materiales de construcción 
-                        y productos del mercado con la mejor calidad.
-                    </p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+                `;
+            }
+        });
+        
+        productGrid.innerHTML = html;
+    }
+    
+    // ============================================
+    // FUNCIONES DEL CARRITO
+    // ============================================
+    
+    window.addToCart = function(productId, event, quantity = null) {
+        if (event) event.stopPropagation();
+        
+        // Buscar producto
+        let product = null;
+        
+        // Buscar por ID numérico
+        if (typeof productId === 'number' || !isNaN(parseInt(productId))) {
+            const id = parseInt(productId);
+            product = products.find(p => p.id === id || p.id === productId);
+        }
+        
+        // Si no se encuentra, buscar por índice
+        if (!product && typeof productId === 'string' && productId.includes('-')) {
+            const index = parseInt(productId.split('-')[1]);
+            product = products[index];
+        }
+        
+        if (!product) {
+            console.error('Producto no encontrado:', productId);
+            showToast('Error: producto no disponible');
+            return;
+        }
+        
+        // Verificar stock
+        if (product.stock === 0 || product.stock === "0" || product.activo === false) {
+            showToast('Producto agotado');
+            return;
+        }
+        
+        // Obtener cantidad
+        let qty = quantity || 1;
+        const qtyEl = document.getElementById(`qty-${productId}`);
+        if (qtyEl && !quantity) {
+            qty = parseInt(qtyEl.textContent) || 1;
+        }
+        
+        // Crear item
+        const cartItem = {
+            id: product.id || productId,
+            name: product.nombre || product.name,
+            price: product.precio || product.price,
+            quantity: qty,
+            image: product.imagen || product.image,
+            detail: product.detalle || product.specificDetails || ''
+        };
+        
+        // Agregar al carrito
+        const existingIndex = cart.findIndex(item => item.id == cartItem.id);
+        if (existingIndex !== -1) {
+            cart[existingIndex].quantity += qty;
+        } else {
+            cart.push(cartItem);
+        }
+        
+        // Actualizar UI
+        updateCartUI();
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // Feedback visual
+        showCartAnimation();
+        showToast(`${cartItem.name} añadido al carrito`);
+        
+        // Resetear cantidad
+        if (qtyEl && !quantity) qtyEl.textContent = '1';
+    };
+    
+    window.increaseQuantity = function(productId, event) {
+        if (event) event.stopPropagation();
+        const qtyEl = document.getElementById(`qty-${productId}`);
+        if (qtyEl) {
+            let val = parseInt(qtyEl.textContent) || 1;
+            val++;
+            qtyEl.textContent = val;
+        }
+    };
+    
+    window.decreaseQuantity = function(productId, event) {
+        if (event) event.stopPropagation();
+        const qtyEl = document.getElementById(`qty-${productId}`);
+        if (qtyEl) {
+            let val = parseInt(qtyEl.textContent) || 1;
+            if (val > 1) {
+                val--;
+                qtyEl.textContent = val;
+            }
+        }
+    };
+    
+    function updateCartUI() {
+        const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        const totalPrice = cart.reduce((sum, item) => sum + ((item.price || 0) * (item.quantity || 1)), 0);
+        
+        document.getElementById('cartCount').textContent = totalItems;
+        document.getElementById('cartTotal').textContent = `$${totalPrice.toLocaleString()}`;
+        document.getElementById('floatingCartTotal').textContent = `$${totalPrice.toLocaleString()}`;
+        
+        // Renderizar items del carrito
+        const cartItems = document.getElementById('cartItems');
+        if (cart.length === 0) {
+            cartItems.innerHTML = '<p class="text-center text-[var(--text-medium)] py-8"><i class="fas fa-shopping-cart text-4xl text-gray-300 mb-3"></i><br>Tu carrito está vacío</p>';
+            sendWhatsAppOrder.disabled = true;
+        } else {
+            cartItems.innerHTML = cart.map((item, index) => `
+                <div class="flex items-center justify-between py-3 border-b border-gray-100 last:border-b-0">
+                    <div class="flex-1">
+                        <h5 class="font-semibold text-[var(--text-dark)]">${item.name || 'Producto'}</h5>
+                        <p class="text-xs text-[var(--text-light)]">$${(item.price || 0).toLocaleString()} c/u × ${item.quantity || 1}</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="updateCartQuantity(${index}, ${(item.quantity || 1) - 1})" class="w-7 h-7 bg-gray-200 rounded-full flex items-center justify-center text-sm font-bold hover:bg-gray-300">−</button>
+                        <span class="text-sm font-semibold w-6 text-center">${item.quantity || 1}</span>
+                        <button onclick="updateCartQuantity(${index}, ${(item.quantity || 1) + 1})" class="w-7 h-7 bg-gray-200 rounded-full flex items-center justify-center text-sm font-bold hover:bg-gray-300">+</button>
+                        <button onclick="removeFromCart(${index})" class="ml-2 text-red-500 hover:text-red-700">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
                     </div>
                 </div>
-                
-                <div class="footer-col">
-                    <h4>Enlaces Rápidos</h4>
-                    <ul>
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#combos">Combos</a></li>
-                        <li><a href="#construccion">Construcción</a></li>
-                        <li><a href="#mercado">Mercado</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Información</h4>
-                    <ul>
-                        <li><a href="#">Términos y condiciones</a></li>
-                        <li><a href="#">Política de privacidad</a></li>
-                        <li><a href="#">Envíos y entregas</a></li>
-                        <li><a href="#">Preguntas frecuentes</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Contacto</h4>
-                    <div class="contact-info">
-                        <p><i class="fas fa-map-marker-alt"></i> Bayona #59, La Habana</p>
-                        <p><i class="fas fa-phone"></i> +53 123 456 78</p>
-                        <p><i class="fab fa-whatsapp"></i> +53 987 654 32</p>
-                        <p><i class="fas fa-envelope"></i> info@bayona59.cu</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 Bodegón Bayona 59. Todos los derechos reservados.</p>
-                <p class="seo-text">
-                    Tienda online La Habana | Venta de combos de alimentos | Cavillas de acero | Productos del mercado | 
-                    Envíos en La Habana | Calidad garantizada | Los mejores precios
-                </p>
-            </div>
-        </div>
-    </footer>
+            `).join('');
+            sendWhatsAppOrder.disabled = false;
+        }
+    }
+    
+    window.updateCartQuantity = function(index, newQuantity) {
+        if (newQuantity <= 0) {
+            removeFromCart(index);
+            return;
+        }
+        cart[index].quantity = newQuantity;
+        updateCartUI();
+        localStorage.setItem('cart', JSON.stringify(cart));
+    };
+    
+    window.removeFromCart = function(index) {
+        cart.splice(index, 1);
+        updateCartUI();
+        localStorage.setItem('cart', JSON.stringify(cart));
+        showToast('Producto eliminado del carrito');
+    };
+    
+    function showToast(message) {
+        const toast = document.getElementById('cartToast');
+        const msg = document.getElementById('cartToastMessage');
+        clearTimeout(toastTimeout);
+        msg.textContent = message;
+        toast.classList.add('show');
+        toastTimeout = setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+    
+    function showCartAnimation() {
+        floatingCartBtn.classList.add('shake');
+        setTimeout(() => floatingCartBtn.classList.remove('shake'), 400);
+    }
+    
+    // ============================================
+    // FUNCIONES DE ENVÍO Y PRECIOS
+    // ============================================
+    
+    function calculateShippingFee(subtotal) {
+        for (const range of SHIPPING_RANGES) {
+            if (subtotal <= range.max) {
+                return { fee: range.fee, discount: range.discount };
+            }
+        }
+        return { fee: 100, discount: "50%" };
+    }
+    
+    function calculateFinalPrice(cartItems) {
+        const subtotal = cartItems.reduce((sum, item) => sum + ((item.price || 0) * (item.quantity || 1)), 0);
+        const shippingInfo = calculateShippingFee(subtotal);
+        const serviceFee = subtotal * SERVICE_FEE_PERCENTAGE;
+        let adjustment = 0;
+        if ((serviceFee + shippingInfo.fee) < MINIMUM_PROFIT) {
+            adjustment = MINIMUM_PROFIT - (serviceFee + shippingInfo.fee);
+        }
+        return {
+            subtotal,
+            shippingFee: shippingInfo.fee,
+            adjustment,
+            finalPrice: subtotal + shippingInfo.fee + adjustment
+        };
+    }
+    
+    // ============================================
+    // FUNCIONES DE WHATSAPP
+    // ============================================
+    
+    function generateWhatsAppMessage(cart, customerData) {
+        const items = cart.map(item => 
+            `• ${item.name} x${item.quantity} - $${((item.price || 0) * (item.quantity || 1)).toLocaleString()}`
+        ).join('\n');
+        
+        const subtotal = cart.reduce((sum, i) => sum + ((i.price || 0) * (i.quantity || 1)), 0);
+        const shipping = calculateShippingFee(subtotal);
+        
+        return `✅ *PEDIDO EL RESOLVITO*
+        
+🛒 *PRODUCTOS:*
+${items}
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script src="script.js"></script>
-        <!-- Sección de Testimonios -->
-    <section class="testimonios-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Lo que dicen <span class="highlight">nuestros clientes</span></h2>
-                <p>Clientes satisfechos en toda La Habana</p>
-            </div>
-            
-            <div class="testimonios-grid">
-                <div class="testimonio-card">
-                    <div class="testimonio-text">
-                        "Excelente servicio y productos de calidad. Los combos son perfectos para la familia."
-                    </div>
-                    <div class="testimonio-author">
-                        <strong>María González</strong>
-                        <span>Vedado, La Habana</span>
-                    </div>
-                </div>
-                
-                <div class="testimonio-card">
-                    <div class="testimonio-text">
-                        "Las cavillas de acero son de primera calidad. Me salvaron mi proyecto de construcción."
-                    </div>
-                    <div class="testimonio-author">
-                        <strong>Carlos Rodríguez</strong>
-                        <span>Centro Habana</span>
-                    </div>
-                </div>
-                
-                <div class="testimonio-card">
-                    <div class="testimonio-text">
-                        "Rápida entrega y precios justos. Siempre compro aquí para mi negocio."
-                    </div>
-                    <div class="testimonio-author">
-                        <strong>Laura Martínez</strong>
-                        <span>Playa, La Habana</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+💰 *TOTAL: $${(subtotal + shipping.fee).toLocaleString()}*
+🚚 Envío: $${shipping.fee.toLocaleString()}
 
-    <!-- Sección FAQ -->
-    <section class="faq-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Preguntas <span class="highlight">Frecuentes</span></h2>
-                <p>Respuestas a tus dudas más comunes</p>
-            </div>
+📍 *ENTREGA:* ${customerData.address || 'No especificada'}
+📞 *CONTACTO:* ${customerData.phone || 'No especificado'}
+
+_¡Gracias por tu compra!_`.replace(/        /g, '');
+    }
+    
+    function confirmOrder() {
+        const customerName = document.getElementById('customerName')?.value || 'Cliente';
+        const customerPhone = document.getElementById('customerPhone')?.value || '';
+        const customerAddress = document.getElementById('customerAddress')?.value || '';
+        
+        const customerData = {
+            name: customerName,
+            phone: customerPhone,
+            address: customerAddress
+        };
+        
+        const message = generateWhatsAppMessage(cart, customerData);
+        const encodedMessage = encodeURIComponent(message);
+        
+        window.open(`https://wa.me/5356382909?text=${encodedMessage}`, '_blank');
+        
+        // Limpiar carrito
+        cart = [];
+        updateCartUI();
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // Cerrar modales
+        hideModal(cartModal);
+        
+        // Mostrar confirmación
+        showModal(confirmationModal);
+    }
+    
+    // ============================================
+    // FUNCIONES DE MODALES
+    // ============================================
+    
+    function showModal(modal) {
+        if (modal) {
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+    
+    function hideModal(modal) {
+        if (modal) {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+    }
+    
+    // ============================================
+    // CONTADORES DE VISITAS
+    // ============================================
+    
+    async function updateAllCounters() {
+        try {
+            const response = await fetch('https://api.countapi.xyz/hit/el-resolvito-cuba/visits');
+            const data = await response.json();
+            const count = data.value || 1247;
             
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <h3>¿Hacen envíos a domicilio?</h3>
-                    <p>Sí, realizamos envíos a toda La Habana. El costo depende de la zona y el tamaño del pedido.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>¿Qué métodos de pago aceptan?</h3>
-                    <p>Aceptamos efectivo, transferencia bancaria y pagos por WhatsApp.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>¿Puedo personalizar un combo?</h3>
-                    <p>¡Claro! Contacta con nosotros por WhatsApp y creamos un combo a tu medida.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <h3>¿Cuánto tarda la entrega?</h3>
-                    <p>Normalmente 24-48 horas hábiles después de confirmado el pedido.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            document.querySelectorAll('#heroCounter, #communityCounter, #footerCounter, #simpleCounter').forEach(el => {
+                if (el) el.textContent = count.toLocaleString();
+            });
+        } catch (error) {
+            const fallback = localStorage.getItem('visits') || 1247;
+            document.querySelectorAll('#heroCounter, #communityCounter, #footerCounter, #simpleCounter').forEach(el => {
+                if (el) el.textContent = fallback.toLocaleString();
+            });
+        }
+    }
+    
+    // ============================================
+    // EVENT LISTENERS
+    // ============================================
+    
+    function setupEventListeners() {
+        // Carrito
+        floatingCartBtn.addEventListener('click', () => showModal(cartModal));
+        if (closeCartModalBtn) closeCartModalBtn.addEventListener('click', () => hideModal(cartModal));
+        if (cartModal) cartModal.addEventListener('click', e => { if (e.target === cartModal) hideModal(cartModal); });
+        
+        // Confirmación
+        if (closeConfirmationModalBtn) closeConfirmationModalBtn.addEventListener('click', () => hideModal(confirmationModal));
+        if (confirmationModal) confirmationModal.addEventListener('click', e => { if (e.target === confirmationModal) hideModal(confirmationModal); });
+        
+        // WhatsApp
+        if (sendWhatsAppOrder) sendWhatsAppOrder.addEventListener('click', confirmOrder);
+        if (contactWhatsappBtn) contactWhatsappBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.open('https://chat.whatsapp.com/H19dIofkINdHrVApA4jbvW', '_blank');
+        });
+        
+        // Menú móvil
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.remove('translate-x-[-100%]');
+                document.getElementById('mobile-menu').classList.add('translate-x-0');
+                mobileBackdrop.classList.remove('hidden');
+            });
+        }
+        
+        if (closeMobileMenuBtn) {
+            closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
+        }
+        
+        if (mobileBackdrop) {
+            mobileBackdrop.addEventListener('click', closeMobileMenu);
+        }
+        
+        function closeMobileMenu() {
+            document.getElementById('mobile-menu').classList.remove('translate-x-0');
+            document.getElementById('mobile-menu').classList.add('translate-x-[-100%]');
+            mobileBackdrop.classList.add('hidden');
+        }
+        
+        // Búsqueda
+        const searchInput = document.getElementById('globalSearchInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', () => filterAndRenderProducts());
+        }
+        
+        // Cambio de departamento
+        window.switchDepartment = function(dept) {
+            currentDepartment = dept;
+            
+            document.querySelectorAll('.department-tab').forEach(tab => {
+                tab.classList.remove('bg-[var(--primary)]', 'text-white');
+                tab.classList.add('bg-white', 'text-gray-600', 'border', 'border-gray-200');
+            });
+            
+            const activeTab = document.getElementById(`tab-${dept}`);
+            if (activeTab) {
+                activeTab.classList.remove('bg-white', 'text-gray-600', 'border', 'border-gray-200');
+                activeTab.classList.add('bg-[var(--primary)]', 'text-white');
+            }
+            
+            const titles = {
+                'mercado': '🛒 Mercado y Víveres',
+                'ropa': '👕 Moda y Estilo',
+                'electro': '⚡ Electrodomésticos'
+            };
+            
+            document.getElementById('sectionTitle').textContent = titles[dept] || 'Mercado y Víveres';
+            filterAndRenderProducts();
+        };
+        
+        // Accordion
+        window.toggleAccordion = function(id) {
+            const content = document.getElementById(`content-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+            if (content) {
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            }
+        };
+        
+        // Scroll header
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Navegación suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        closeMobileMenu();
+                        setTimeout(() => {
+                            window.scrollTo({
+                                top: target.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }, 100);
+                    }
+                }
+            });
+        });
+        
+        // Resize para re-render
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                filterAndRenderProducts();
+            }, 250);
+        });
+    }
+    
+    // ============================================
+    // FLOATING CALLOUT
+    // ============================================
+    
+    function showFloatingCallout() {
+        let callout = document.getElementById('floatingCallout');
+        if (!callout) {
+            callout = document.createElement('div');
+            callout.id = 'floatingCallout';
+            callout.className = 'fixed bottom-24 right-6 bg-[var(--primary)] text-white p-4 rounded-lg shadow-xl text-sm z-50 max-w-[250px]';
+            callout.innerHTML = `
+                <button id="closeFloatingCallout" class="absolute top-2 right-2 text-white/80 hover:text-white">
+                    <i class="fas fa-times"></i>
+                </button>
+                <p class="font-bold mb-2"><i class="fas fa-truck mr-2"></i> ¡Comodidad en La Habana!</p>
+                <p class="text-xs mb-3">Recibe tus productos sin colas ni estrés</p>
+                <a href="#mercado" class="inline-block bg-[var(--accent)] text-white text-xs font-bold py-2 px-4 rounded-full hover:bg-[var(--accent-dark)] transition">
+                    Ver Productos
+                </a>
+            `;
+            document.body.appendChild(callout);
+            
+            document.getElementById('closeFloatingCallout').addEventListener('click', () => {
+                callout.remove();
+                sessionStorage.setItem('floatingCalloutClosed', 'true');
+            });
+        }
+    }
+    
+    // ============================================
+    // PRODUCTOS DE EJEMPLO (FALLBACK)
+    // ============================================
+    
+    function getProductosEjemplo() {
+        return [
+            { id: 1, nombre: 'Atún en aceite', precio: 500, imagen: 'https://i.postimg.cc/76xHK6zt/atun_precio_500.png', categoria: 'Alimentos y conservas', detalle: '200g', stock: 10, department: 'mercado' },
+            { id: 2, nombre: 'Leche condensada', precio: 520, imagen: 'https://i.postimg.cc/tT2XwjtT/leche_condensada.png', categoria: 'Alimentos y conservas', detalle: '397g', stock: 10, department: 'mercado' },
+            { id: 7, nombre: 'Cartón de huevo', precio: 3000, imagen: 'https://i.postimg.cc/sDWkwVvv/carton_de_huevo_30_u_precio_3100.png', categoria: 'Alimentos y conservas', detalle: '30 unidades', stock: 10, department: 'mercado' },
+            { id: 13, nombre: 'Mayonesa', precio: 850, imagen: 'https://i.postimg.cc/KzJZw2rR/mayonesa_precio_850.png', categoria: 'Salsas', detalle: 'Frasco mediano', stock: 10, department: 'mercado' }
+        ];
+    }
+</script>
+
+<!-- Script de OneSignal (opcional) -->
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+<script>
+    // Inicializar OneSignal (comentado hasta tener configuración real)
+    /*
+    window.OneSignal = window.OneSignal || [];
+    OneSignal.push(function() {
+        OneSignal.init({
+            appId: "TU-APP-ID-AQUI",
+            notifyButton: { enable: false },
+            allowLocalhostAsSecureOrigin: true
+        });
+    });
+    */
+</script>
+
 </body>
 </html>
