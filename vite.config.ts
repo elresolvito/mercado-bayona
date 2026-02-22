@@ -5,7 +5,7 @@ import { inspectAttr } from 'kimi-plugin-inspect-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/mercado-bayona/',  // ← CAMBIADO AQUÍ
+  base:base: '/',  // ← CAMBIADO AQUÍ
   plugins: [inspectAttr(), react()],
   resolve: {
     alias: {
