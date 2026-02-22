@@ -1,8 +1,0 @@
-# Forzar a GitHub a detectar como HTML
-*.html linguist-language=HTML
-*.css linguist-language=CSS
-*.js linguist-language=JavaScript
-
-# Archivos a ignorar en estadísticas
-*.min.css linguist-vendored
-*.min.js linguist-vendored
